@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
@@ -30,6 +31,14 @@ public class Asientos implements Serializable {
 
     @Column(name = "estado")
     private String estado;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "asientos" }, allowSetters = true)
+    private Venta venta;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "asientos" }, allowSetters = true)
+    private Sesion sesion;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -96,6 +105,32 @@ public class Asientos implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Venta getVenta() {
+        return this.venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    public Asientos venta(Venta venta) {
+        this.setVenta(venta);
+        return this;
+    }
+
+    public Sesion getSesion() {
+        return this.sesion;
+    }
+
+    public void setSesion(Sesion sesion) {
+        this.sesion = sesion;
+    }
+
+    public Asientos sesion(Sesion sesion) {
+        this.setSesion(sesion);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

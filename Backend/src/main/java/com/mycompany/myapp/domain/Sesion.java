@@ -1,8 +1,11 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Sesion.
@@ -37,6 +40,10 @@ public class Sesion implements Serializable {
 
     @Column(name = "expira_en")
     private LocalDate expiraEn;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sesion")
+    @JsonIgnoreProperties(value = { "venta", "sesion" }, allowSetters = true)
+    private Set<Asientos> asientos = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -129,6 +136,37 @@ public class Sesion implements Serializable {
 
     public void setExpiraEn(LocalDate expiraEn) {
         this.expiraEn = expiraEn;
+    }
+
+    public Set<Asientos> getAsientos() {
+        return this.asientos;
+    }
+
+    public void setAsientos(Set<Asientos> asientos) {
+        if (this.asientos != null) {
+            this.asientos.forEach(i -> i.setSesion(null));
+        }
+        if (asientos != null) {
+            asientos.forEach(i -> i.setSesion(this));
+        }
+        this.asientos = asientos;
+    }
+
+    public Sesion asientos(Set<Asientos> asientos) {
+        this.setAsientos(asientos);
+        return this;
+    }
+
+    public Sesion addAsientos(Asientos asientos) {
+        this.asientos.add(asientos);
+        asientos.setSesion(this);
+        return this;
+    }
+
+    public Sesion removeAsientos(Asientos asientos) {
+        this.asientos.remove(asientos);
+        asientos.setSesion(null);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
