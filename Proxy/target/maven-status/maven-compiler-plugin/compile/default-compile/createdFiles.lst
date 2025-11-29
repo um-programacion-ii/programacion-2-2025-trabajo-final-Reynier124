@@ -1,0 +1,8 @@
+com/project/proxy/dto/RegistarUsuarioRequest.class
+com/project/proxy/controller/ProxyController.class
+com/project/proxy/client/CatedraClient.class
+com/project/proxy/config/SecurityConfig.class
+com/project/proxy/config/WebClientConfig.class
+com/project/proxy/service/ProxyService.class
+com/project/proxy/ProxyApplication.class
+com/project/proxy/dto/RegistarUsuarioResponse.class

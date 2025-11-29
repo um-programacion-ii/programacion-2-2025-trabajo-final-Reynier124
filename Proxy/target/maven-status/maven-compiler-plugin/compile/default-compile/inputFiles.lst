@@ -1,0 +1,8 @@
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/ProxyApplication.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/client/CatedraClient.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/config/SecurityConfig.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/config/WebClientConfig.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/controller/ProxyController.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/RegistarUsuarioRequest.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/RegistarUsuarioResponse.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/service/ProxyService.java
