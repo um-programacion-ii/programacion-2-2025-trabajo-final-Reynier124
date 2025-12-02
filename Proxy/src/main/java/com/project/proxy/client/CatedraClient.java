@@ -33,4 +33,6 @@ public class CatedraClient {
                 .bodyToMono(RegistarUsuarioResponse.class)
                 .block();
     }
+
+
 }
