@@ -226,3 +226,5 @@ jhipster:
 # ===================================================================
 
 # application:
+proxy:
+  base-url: ${PROXY_BASE_URL:http://localhost:8080}
