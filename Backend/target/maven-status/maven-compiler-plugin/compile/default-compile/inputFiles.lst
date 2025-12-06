@@ -102,8 +102,10 @@
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/web/rest/errors/BadRequestAlertException.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/web/rest/errors/EmailAlreadyUsedException.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/web/rest/errors/ErrorConstants.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/web/rest/errors/ErrorResponse.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/web/rest/errors/ExceptionTranslator.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/web/rest/errors/FieldErrorVM.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/web/rest/errors/GlobalExceptionHandler.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/web/rest/errors/InvalidPasswordException.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/web/rest/errors/LoginAlreadyUsedException.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/web/rest/errors/package-info.java

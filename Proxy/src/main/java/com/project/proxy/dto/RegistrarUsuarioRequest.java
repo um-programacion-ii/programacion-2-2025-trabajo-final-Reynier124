@@ -1,9 +1,8 @@
 package com.project.proxy.dto;
 
 import lombok.Data;
-
 @Data
-public class RegistarUsuarioRequest {
+public class RegistrarUsuarioRequest {
     private String username;
     private String password;
     private String firstName;

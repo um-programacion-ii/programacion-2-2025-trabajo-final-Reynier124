@@ -3,7 +3,7 @@ package com.project.proxy.dto;
 import lombok.Data;
 
 @Data
-public class RegistarUsuarioResponse {
+public class RegistrarUsuarioResponse {
 
     private boolean creado;
     private String resultado;

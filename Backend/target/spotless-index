@@ -15,8 +15,8 @@ src/main/java/com/mycompany/myapp/config/JacksonConfiguration.java 2025-11-26T21
 src/main/java/com/mycompany/myapp/config/LiquibaseConfiguration.java 2025-11-26T21:18:00.446636768Z
 src/main/java/com/mycompany/myapp/config/LoggingAspectConfiguration.java 2025-11-26T21:18:00.446636768Z
 src/main/java/com/mycompany/myapp/config/LoggingConfiguration.java 2025-11-26T21:18:00.446636768Z
-src/main/java/com/mycompany/myapp/config/ProxyWebClientConfig.java 2025-12-03T14:51:23.934752942Z
-src/main/java/com/mycompany/myapp/config/SecurityConfiguration.java 2025-12-03T15:10:50.934109879Z
+src/main/java/com/mycompany/myapp/config/ProxyWebClientConfig.java 2025-12-05T12:21:51.102014728Z
+src/main/java/com/mycompany/myapp/config/SecurityConfiguration.java 2025-12-05T12:21:51.102014728Z
 src/main/java/com/mycompany/myapp/config/SecurityJwtConfiguration.java 2025-11-26T21:18:00.446636768Z
 src/main/java/com/mycompany/myapp/config/WebConfigurer.java 2025-11-26T21:18:00.446636768Z
 src/main/java/com/mycompany/myapp/config/package-info.java 2025-11-26T21:18:00.446636768Z
@@ -49,7 +49,7 @@ src/main/java/com/mycompany/myapp/security/SpringSecurityAuditorAware.java 2025-
 src/main/java/com/mycompany/myapp/security/UserNotActivatedException.java 2025-11-26T21:18:00.447636772Z
 src/main/java/com/mycompany/myapp/security/package-info.java 2025-11-26T21:18:00.447636772Z
 src/main/java/com/mycompany/myapp/service/AsientosService.java 2025-11-26T21:18:00.447636772Z
-src/main/java/com/mycompany/myapp/service/CatedraService.java 2025-12-03T13:54:59.807539Z
+src/main/java/com/mycompany/myapp/service/CatedraService.java 2025-12-05T12:21:51.102014728Z
 src/main/java/com/mycompany/myapp/service/EmailAlreadyUsedException.java 2025-11-26T21:18:00.448636776Z
 src/main/java/com/mycompany/myapp/service/EventoService.java 2025-11-26T21:18:00.448636776Z
 src/main/java/com/mycompany/myapp/service/IntegrantesService.java 2025-11-26T21:18:00.448636776Z
@@ -60,7 +60,7 @@ src/main/java/com/mycompany/myapp/service/UserService.java 2025-11-26T21:18:00.4
 src/main/java/com/mycompany/myapp/service/UsernameAlreadyUsedException.java 2025-11-26T21:18:00.448636776Z
 src/main/java/com/mycompany/myapp/service/UsuarioService.java 2025-11-26T21:18:00.448636776Z
 src/main/java/com/mycompany/myapp/service/VentaService.java 2025-11-26T21:18:00.448636776Z
-src/main/java/com/mycompany/myapp/service/client/ProxyClient.java 2025-12-03T15:19:55.672347677Z
+src/main/java/com/mycompany/myapp/service/client/ProxyClient.java 2025-12-05T12:21:51.102014728Z
 src/main/java/com/mycompany/myapp/service/dto/AdminUserDTO.java 2025-11-26T21:18:00.448636776Z
 src/main/java/com/mycompany/myapp/service/dto/AsientosDTO.java 2025-11-26T21:18:00.448636776Z
 src/main/java/com/mycompany/myapp/service/dto/EventoDTO.java 2025-11-26T21:18:00.448636776Z
@@ -75,7 +75,7 @@ src/main/java/com/mycompany/myapp/service/impl/AsientosServiceImpl.java 2025-11-
 src/main/java/com/mycompany/myapp/service/impl/EventoServiceImpl.java 2025-11-26T21:18:00.448636776Z
 src/main/java/com/mycompany/myapp/service/impl/IntegrantesServiceImpl.java 2025-11-26T21:18:00.448636776Z
 src/main/java/com/mycompany/myapp/service/impl/SesionServiceImpl.java 2025-11-26T21:18:00.448636776Z
-src/main/java/com/mycompany/myapp/service/impl/UsuarioServiceImpl.java 2025-12-03T14:40:52.122050949Z
+src/main/java/com/mycompany/myapp/service/impl/UsuarioServiceImpl.java 2025-12-05T12:21:51.103014754Z
 src/main/java/com/mycompany/myapp/service/impl/VentaServiceImpl.java 2025-11-26T21:18:00.449636780Z
 src/main/java/com/mycompany/myapp/service/impl/package-info.java 2025-11-26T21:18:00.449636780Z
 src/main/java/com/mycompany/myapp/service/mapper/AsientosMapper.java 2025-11-26T21:18:00.449636780Z
@@ -92,7 +92,7 @@ src/main/java/com/mycompany/myapp/web/rest/AccountResource.java 2025-11-26T21:18
 src/main/java/com/mycompany/myapp/web/rest/AsientosResource.java 2025-11-26T21:18:00.449636780Z
 src/main/java/com/mycompany/myapp/web/rest/AuthenticateController.java 2025-11-26T21:18:00.449636780Z
 src/main/java/com/mycompany/myapp/web/rest/AuthorityResource.java 2025-11-26T21:18:00.449636780Z
-src/main/java/com/mycompany/myapp/web/rest/CatedraController.java 2025-12-03T15:08:03.503418368Z
+src/main/java/com/mycompany/myapp/web/rest/CatedraController.java 2025-12-05T12:21:51.103014754Z
 src/main/java/com/mycompany/myapp/web/rest/EventoResource.java 2025-11-26T21:18:00.449636780Z
 src/main/java/com/mycompany/myapp/web/rest/IntegrantesResource.java 2025-11-26T21:18:00.449636780Z
 src/main/java/com/mycompany/myapp/web/rest/PublicUserResource.java 2025-11-26T21:18:00.449636780Z
@@ -103,8 +103,10 @@ src/main/java/com/mycompany/myapp/web/rest/VentaResource.java 2025-11-26T21:18:0
 src/main/java/com/mycompany/myapp/web/rest/errors/BadRequestAlertException.java 2025-11-26T21:18:00.449636780Z
 src/main/java/com/mycompany/myapp/web/rest/errors/EmailAlreadyUsedException.java 2025-11-26T21:18:00.449636780Z
 src/main/java/com/mycompany/myapp/web/rest/errors/ErrorConstants.java 2025-11-26T21:18:00.450636785Z
+src/main/java/com/mycompany/myapp/web/rest/errors/ErrorResponse.java 2025-12-05T12:21:51.103014754Z
 src/main/java/com/mycompany/myapp/web/rest/errors/ExceptionTranslator.java 2025-11-26T21:18:00.450636785Z
 src/main/java/com/mycompany/myapp/web/rest/errors/FieldErrorVM.java 2025-11-26T21:18:00.450636785Z
+src/main/java/com/mycompany/myapp/web/rest/errors/GlobalExceptionHandler.java 2025-12-05T12:21:51.103014754Z
 src/main/java/com/mycompany/myapp/web/rest/errors/InvalidPasswordException.java 2025-11-26T21:18:00.450636785Z
 src/main/java/com/mycompany/myapp/web/rest/errors/LoginAlreadyUsedException.java 2025-11-26T21:18:00.450636785Z
 src/main/java/com/mycompany/myapp/web/rest/errors/package-info.java 2025-11-26T21:18:00.450636785Z

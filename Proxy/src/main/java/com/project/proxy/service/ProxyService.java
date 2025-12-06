@@ -1,9 +1,10 @@
 package com.project.proxy.service;
 
 import com.project.proxy.client.CatedraClient;
-import com.project.proxy.dto.RegistarUsuarioRequest;
-import com.project.proxy.dto.RegistarUsuarioResponse;
+import com.project.proxy.dto.*;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProxyService {
@@ -14,7 +15,23 @@ public class ProxyService {
         this.catedraClient = catedraClient;
     }
 
-    public RegistarUsuarioResponse registarUsuario(RegistarUsuarioRequest request) {
+    public RegistrarUsuarioResponse registarUsuario(RegistrarUsuarioRequest request) {
         return catedraClient.registarUsuario(request);
+    }
+
+    public LoginResponse loguearUsuario(LoginRequest request) {
+        return catedraClient.loguearUsuario(request);
+    }
+
+    public List<EventoResumidoResponse> conseguirEventosResumidos() {
+        return catedraClient.conseguirEventosResumidos();
+    }
+
+    public List<EventoResponse> conseguirEventos() {
+        return catedraClient.conseguirEventos();
+    }
+
+    public EventoResponse conseguirEventosPorId(Long id) {
+        return catedraClient.conseguirEventosPorId(id);
     }
 }
