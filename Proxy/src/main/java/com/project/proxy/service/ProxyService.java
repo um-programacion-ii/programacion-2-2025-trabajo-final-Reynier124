@@ -34,4 +34,5 @@ public class ProxyService {
     public EventoResponse conseguirEventosPorId(Long id) {
         return catedraClient.conseguirEventosPorId(id);
     }
+
 }
