@@ -15,6 +15,7 @@
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/config/LoggingAspectConfiguration.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/config/LoggingConfiguration.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/config/ProxyWebClientConfig.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/config/RedisConfig.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/config/SecurityConfiguration.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/config/SecurityJwtConfiguration.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/config/WebConfigurer.java
@@ -29,6 +30,7 @@
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/domain/Usuario.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/domain/Venta.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/domain/package-info.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/enumeration/Changes.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/management/SecurityMetersService.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/management/package-info.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/package-info.java
@@ -63,6 +65,9 @@
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/AdminUserDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/AsientosDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/EventoDTO.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/EventoKafkaDTO.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/EventoResumidoDTO.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/EventoTipoDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/IntegrantesDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/PasswordChangeDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/SesionDTO.java
@@ -71,7 +76,9 @@
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/VentaDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/package-info.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/impl/AsientosServiceImpl.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/impl/EventoChangeListener.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/impl/EventoServiceImpl.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/impl/EventoSyncService.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/impl/IntegrantesServiceImpl.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/impl/SesionServiceImpl.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/impl/UsuarioServiceImpl.java

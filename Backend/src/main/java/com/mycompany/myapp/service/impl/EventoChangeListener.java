@@ -3,26 +3,31 @@ package com.mycompany.myapp.service.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycompany.myapp.service.dto.EventoKafkaDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.Message;
+import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.stereotype.Component;
 import com.mycompany.myapp.enumeration.Changes;
 
 import static com.mycompany.myapp.enumeration.Changes.*;
 
 @Component
-@Slf4j
-public class EventoChangeListener {
+public class EventoChangeListener implements MessageListener {
     @Autowired
     private EventoSyncService eventoSyncService;
 
     @Autowired
     private ObjectMapper objectMapper;
 
+    private final Logger log = LoggerFactory.getLogger(EventoChangeListener.class);
+
     /**
      * Este método se ejecuta automáticamente cuando llega un mensaje de Redis
      */
     @Override
-    public void onMessage(Message message, byte[] pattern) {
+    public void onMessage(Message message, byte[] pattern)  {
         try {
             // Obtener el contenido del mensaje
             String messageBody = new String(message.getBody());
