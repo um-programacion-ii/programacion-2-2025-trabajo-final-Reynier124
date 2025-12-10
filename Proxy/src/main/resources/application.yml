@@ -10,3 +10,10 @@ kafka:
     group-id: proxy-consumer-group
   topic:
     eventos: eventos
+  auto-offset-reset: earliest
+  key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+spring:
+  redis:
+    host: "http://192.168.194.250"
+    port: 6379

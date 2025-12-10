@@ -1,6 +1,8 @@
+com/project/proxy/service/RedisService.class
 com/project/proxy/dto/EventoTipo.class
 com/project/proxy/domain/ProxyKafkaListener$1.class
 com/project/proxy/service/BackendNotificationService.class
+com/project/proxy/service/KafkaConsumerService.class
 com/project/proxy/dto/EventoResponse.class
 com/project/proxy/dto/RegistrarUsuarioResponse.class
 com/project/proxy/controller/GlobalExceptionHandler.class
