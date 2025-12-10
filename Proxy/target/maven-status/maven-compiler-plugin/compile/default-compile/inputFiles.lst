@@ -21,4 +21,6 @@
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/enumeration/Changes.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/exceptions/ErrorResponse.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/service/BackendNotificationService.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/service/KafkaConsumerService.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/service/ProxyService.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/service/RedisService.java
