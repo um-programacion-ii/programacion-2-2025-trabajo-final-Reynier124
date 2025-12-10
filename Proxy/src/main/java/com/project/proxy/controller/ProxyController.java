@@ -1,12 +1,10 @@
 package com.project.proxy.controller;
 
-import com.project.proxy.dto.RegistarUsuarioRequest;
-import com.project.proxy.dto.RegistarUsuarioResponse;
+import com.project.proxy.dto.*;
 import com.project.proxy.service.ProxyService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/proxy")
@@ -18,8 +16,28 @@ public class ProxyController {
     }
 
     @PostMapping("/registrar")
-    public RegistarUsuarioResponse registrarUsuario(@RequestBody RegistarUsuarioRequest request) {
+    public RegistrarUsuarioResponse registrarUsuario(@RequestBody RegistrarUsuarioRequest request) {
         System.out.println("→ ENTRÓ AL CONTROLLER Proxy");
         return proxyService.registarUsuario(request);
+    }
+
+    @PostMapping("/authenticate")
+    public LoginResponse loguearUsuario(@RequestBody LoginRequest request) {
+        return proxyService.loguearUsuario(request);
+    }
+
+    @GetMapping("/eventos-resumidos")
+    public List<EventoResumidoResponse> conseguirEventosResumidos() {
+        return proxyService.conseguirEventosResumidos();
+    }
+
+    @GetMapping("/eventos")
+    public List<EventoResponse> conseguirEventos() {
+        return proxyService.conseguirEventos();
+    }
+
+    @GetMapping("/eventos/{id}")
+    public EventoResponse conseguirEventosPorId(@PathVariable Long id) {
+        return proxyService.conseguirEventosPorId(id);
     }
 }

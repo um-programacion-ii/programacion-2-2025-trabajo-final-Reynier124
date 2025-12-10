@@ -1,14 +1,15 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.service.CatedraService;
+import com.mycompany.myapp.service.dto.EventoDTO;
+import com.mycompany.myapp.service.dto.EventoResumidoDTO;
 import jakarta.annotation.security.PermitAll;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/service")
+@RequestMapping("/api/v1/service")
 @PermitAll
 public class CatedraController {
     private final CatedraService catedraService;
@@ -20,5 +21,20 @@ public class CatedraController {
     @PostMapping("/registrar")
     public String registrar(@RequestBody String body) {
         return catedraService.registrar(body);
+    }
+
+    @GetMapping("/eventos/{id}")
+    public EventoDTO getEvento(@PathVariable Long id) {
+        return catedraService.getEventoPorId(id.toString());
+    }
+
+    @GetMapping("/eventos")
+    public List<EventoDTO> getEventos() {
+        return catedraService.getEventos();
+    }
+
+    @GetMapping("/eventos-resumidos")
+    public List<EventoResumidoDTO> getEventosResumidos() {
+        return catedraService.getEventosResumidos();
     }
 }
