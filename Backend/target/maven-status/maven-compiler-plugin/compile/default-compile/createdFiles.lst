@@ -21,6 +21,7 @@ com/mycompany/myapp/enumeration/Changes.class
 com/mycompany/myapp/service/dto/SesionDTO.class
 com/mycompany/myapp/web/rest/CatedraController.class
 com/mycompany/myapp/web/rest/AccountResource.class
+com/mycompany/myapp/service/dto/SesionRedisDTO.class
 com/mycompany/myapp/web/rest/AsientosResource.class
 com/mycompany/myapp/config/DatabaseConfiguration.class
 com/mycompany/myapp/web/rest/errors/BadRequestAlertException.class
@@ -64,6 +65,7 @@ com/mycompany/myapp/web/rest/AuthorityResource.class
 com/mycompany/myapp/config/LiquibaseConfiguration.class
 com/mycompany/myapp/aop/logging/LoggingAspect.class
 com/mycompany/myapp/web/rest/errors/ErrorResponse.class
+com/mycompany/myapp/config/filters/SessionFilterRedis.class
 com/mycompany/myapp/domain/Evento.class
 com/mycompany/myapp/config/JacksonConfiguration.class
 com/mycompany/myapp/repository/UsuarioRepository.class
@@ -108,6 +110,7 @@ com/mycompany/myapp/web/rest/errors/FieldErrorVM.class
 com/mycompany/myapp/service/impl/UsuarioServiceImpl.class
 com/mycompany/myapp/web/rest/vm/ManagedUserVM.class
 com/mycompany/myapp/config/DateTimeFormatConfiguration.class
+com/mycompany/myapp/service/impl/RedisSesionService.class
 com/mycompany/myapp/web/rest/IntegrantesResource.class
 com/mycompany/myapp/config/CRLFLogConverter.class
 com/mycompany/myapp/service/impl/VentaServiceImpl.class

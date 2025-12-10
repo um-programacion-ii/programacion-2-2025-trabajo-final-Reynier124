@@ -3,7 +3,9 @@ package com.mycompany.myapp.config;
 import static org.springframework.security.config.Customizer.withDefaults;
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
+import com.mycompany.myapp.config.filters.SessionFilterRedis;
 import com.mycompany.myapp.security.*;
+import com.mycompany.myapp.service.impl.RedisSesionService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -17,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 import tech.jhipster.config.JHipsterConstants;
@@ -30,9 +33,15 @@ public class SecurityConfiguration {
 
     private final JHipsterProperties jHipsterProperties;
 
-    public SecurityConfiguration(Environment env, JHipsterProperties jHipsterProperties) {
+    private final SessionFilterRedis sessionFilterRedis;
+
+    private final RedisSesionService redisSesionService;
+
+    public SecurityConfiguration(Environment env, JHipsterProperties jHipsterProperties, SessionFilterRedis sessionFilterRedis, RedisSesionService redisSesionService) {
         this.env = env;
         this.jHipsterProperties = jHipsterProperties;
+        this.sessionFilterRedis = sessionFilterRedis;
+        this.redisSesionService = redisSesionService;
     }
 
     @Bean
@@ -45,6 +54,7 @@ public class SecurityConfiguration {
         http
             .cors(withDefaults())
             .csrf(csrf -> csrf.disable())
+            .addFilterBefore(new SessionFilterRedis(redisSesionService), UsernamePasswordAuthenticationFilter.class)
             .authorizeHttpRequests(authz ->
                 // prettier-ignore
                 authz
