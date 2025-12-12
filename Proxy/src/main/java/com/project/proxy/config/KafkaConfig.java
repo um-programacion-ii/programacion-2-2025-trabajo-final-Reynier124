@@ -18,7 +18,7 @@ public class KafkaConfig {
     private String bootstrapServers;
 
     @Value("${kafka.consumer.group-id}")
-    private String groupId; // Tu consumer group id único
+    private String groupId;
 
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {

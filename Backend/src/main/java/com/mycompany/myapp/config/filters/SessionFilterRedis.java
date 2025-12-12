@@ -8,20 +8,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-@Service
 
+@Component
 public class SessionFilterRedis extends OncePerRequestFilter {
-    @Autowired
-    private SesionServiceImpl sesionService;
 
-    @Autowired
-    private RedisSesionService redisSesionService;
+    private final SesionServiceImpl sesionService;
 
-    public SessionFilterRedis(RedisSesionService redisSesionService) {
+    private final RedisSesionService redisSesionService;
+
+    public SessionFilterRedis(SesionServiceImpl sesionService, RedisSesionService redisSesionService) {
+        this.sesionService = sesionService;
         this.redisSesionService = redisSesionService;
     }
 
@@ -32,17 +33,15 @@ public class SessionFilterRedis extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(
-        HttpServletRequest request,
-        HttpServletResponse response,
-        FilterChain filterChain) throws IOException, ServletException {
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
+            throws ServletException, IOException {
 
-        String token = request.getHeader("X-Session-Token");
+        String token = request.getHeader("X-SESSION-TOKEN");
 
-        if (token == null || sesionService.renovarActividad(token) == null) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write("{\"error\":\"Sesion expirada o inválida\"}");
-            return;
+        if (token != null) {
+            sesionService.renovarActividad(token);
         }
 
         filterChain.doFilter(request, response);

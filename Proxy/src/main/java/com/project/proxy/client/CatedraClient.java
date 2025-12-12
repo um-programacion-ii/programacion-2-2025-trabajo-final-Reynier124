@@ -70,7 +70,7 @@ public class CatedraClient {
     public EventoResponse conseguirEventosPorId(Long id) {
         logger.info("Invocando endpoint GET /eventos/{id} usando WebClient");
         return webClient.get()
-                .uri("/endpoints/v1/eventos/{id}", id)
+                .uri("/endpoints/v1/evento/{id}", id)
                 .header("Authorization", "Bearer " + token)
                 .retrieve()
                 .bodyToMono(EventoResponse.class)

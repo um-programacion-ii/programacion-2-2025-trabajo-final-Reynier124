@@ -35,13 +35,13 @@ public class SecurityConfiguration {
 
     private final SessionFilterRedis sessionFilterRedis;
 
-    private final RedisSesionService redisSesionService;
 
-    public SecurityConfiguration(Environment env, JHipsterProperties jHipsterProperties, SessionFilterRedis sessionFilterRedis, RedisSesionService redisSesionService) {
+    public SecurityConfiguration(Environment env,
+                                 JHipsterProperties jHipsterProperties,
+                                 SessionFilterRedis sessionFilterRedis) {
         this.env = env;
         this.jHipsterProperties = jHipsterProperties;
         this.sessionFilterRedis = sessionFilterRedis;
-        this.redisSesionService = redisSesionService;
     }
 
     @Bean
@@ -54,7 +54,7 @@ public class SecurityConfiguration {
         http
             .cors(withDefaults())
             .csrf(csrf -> csrf.disable())
-            .addFilterBefore(new SessionFilterRedis(redisSesionService), UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(sessionFilterRedis, UsernamePasswordAuthenticationFilter.class)
             .authorizeHttpRequests(authz ->
                 // prettier-ignore
                 authz

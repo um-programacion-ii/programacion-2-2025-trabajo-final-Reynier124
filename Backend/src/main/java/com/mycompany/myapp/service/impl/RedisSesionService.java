@@ -24,10 +24,23 @@ public class RedisSesionService {
     }
 
     public SesionRedisDTO obtenerDeCache(String token) {
-        SesionRedisDTO dto = (SesionRedisDTO) redisTemplate.opsForValue().get(key(token));
-        if (dto != null) {
-            redisTemplate.expire(key(token), TTL_SECONDS, TimeUnit.SECONDS); // renovar
+        String redisKey = key(token);
+
+        // 1. Revisar TTL
+        Long ttl = redisTemplate.getExpire(redisKey, TimeUnit.SECONDS);
+
+        if (ttl == null || ttl <= 0) {
+            return null; // sesión expirada
         }
+
+        // 2. Obtener el objeto
+        SesionRedisDTO dto = (SesionRedisDTO) redisTemplate.opsForValue().get(redisKey);
+
+        if (dto != null) {
+            // 3. Refrescar TTL
+            redisTemplate.expire(redisKey, TTL_SECONDS, TimeUnit.SECONDS);
+        }
+
         return dto;
     }
 
