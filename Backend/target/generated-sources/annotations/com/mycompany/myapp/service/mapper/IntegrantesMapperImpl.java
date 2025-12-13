@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-09T11:45:21-0300",
+    date = "2025-12-13T15:47:47-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.6 (Amazon.com Inc.)"
 )
 @Component
@@ -129,14 +129,13 @@ public class IntegrantesMapperImpl implements IntegrantesMapper {
         evento.setTitulo( eventoDTO.getTitulo() );
         evento.setResumen( eventoDTO.getResumen() );
         evento.setDescripcion( eventoDTO.getDescripcion() );
-        evento.setFecha( eventoDTO.getFecha() );
+        if ( eventoDTO.getFecha() != null ) {
+            evento.setFecha( eventoDTO.getFecha().toLocalDate() );
+        }
         evento.setDireccion( eventoDTO.getDireccion() );
         evento.setImagen( eventoDTO.getImagen() );
         evento.setFilaAsientos( eventoDTO.getFilaAsientos() );
-        evento.setColumnaAsientos( eventoDTO.getColumnaAsientos() );
         evento.setPrecioEntrada( eventoDTO.getPrecioEntrada() );
-        evento.setEventoTipoNombre( eventoDTO.getEventoTipoNombre() );
-        evento.setEventoTipoDescripcion( eventoDTO.getEventoTipoDescripcion() );
         evento.setEstado( eventoDTO.getEstado() );
         evento.setUltimaActualizacion( eventoDTO.getUltimaActualizacion() );
 
@@ -161,7 +160,7 @@ public class IntegrantesMapperImpl implements IntegrantesMapper {
             mappingTarget.setDescripcion( eventoDTO.getDescripcion() );
         }
         if ( eventoDTO.getFecha() != null ) {
-            mappingTarget.setFecha( eventoDTO.getFecha() );
+            mappingTarget.setFecha( eventoDTO.getFecha().toLocalDate() );
         }
         if ( eventoDTO.getDireccion() != null ) {
             mappingTarget.setDireccion( eventoDTO.getDireccion() );
@@ -172,17 +171,8 @@ public class IntegrantesMapperImpl implements IntegrantesMapper {
         if ( eventoDTO.getFilaAsientos() != null ) {
             mappingTarget.setFilaAsientos( eventoDTO.getFilaAsientos() );
         }
-        if ( eventoDTO.getColumnaAsientos() != null ) {
-            mappingTarget.setColumnaAsientos( eventoDTO.getColumnaAsientos() );
-        }
         if ( eventoDTO.getPrecioEntrada() != null ) {
             mappingTarget.setPrecioEntrada( eventoDTO.getPrecioEntrada() );
-        }
-        if ( eventoDTO.getEventoTipoNombre() != null ) {
-            mappingTarget.setEventoTipoNombre( eventoDTO.getEventoTipoNombre() );
-        }
-        if ( eventoDTO.getEventoTipoDescripcion() != null ) {
-            mappingTarget.setEventoTipoDescripcion( eventoDTO.getEventoTipoDescripcion() );
         }
         if ( eventoDTO.getEstado() != null ) {
             mappingTarget.setEstado( eventoDTO.getEstado() );

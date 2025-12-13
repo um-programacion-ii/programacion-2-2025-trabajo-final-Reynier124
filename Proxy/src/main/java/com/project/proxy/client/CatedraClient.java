@@ -1,6 +1,8 @@
 package com.project.proxy.client;
 
 import com.project.proxy.dto.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -11,16 +13,17 @@ import java.util.List;
 
 @Component
 public class CatedraClient {
-
-    private final WebClient webClient;
+    @Autowired
+    @Qualifier("catedraWebClient")
+    private  WebClient catedraClient;
     private static final Logger logger = LoggerFactory.getLogger(CatedraClient.class);
     private final String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZXluaWVyMTI0IiwiZXhwIjoxNzY3ODIwODExLCJhdXRoIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzY1MjI4ODExfQ.wdfO_1r3YDPZ1ot8jnGxMlw31UP0bfoj9re24g9C64y6_IW_1u0VKERp4YgZgXVEyh-3KuYbrvxOjWVvR3-52g";
 
-    public CatedraClient(WebClient webClient) {
-        this.webClient = webClient;
+    public CatedraClient(@Qualifier("catedraWebClient") WebClient catedraClient) {
+        this.catedraClient = catedraClient;
         // Log the WebClient's baseUrl when the client is constructed (if available)
         try {
-            String base = webClient.mutate().build().toString();
+            String base = catedraClient.mutate().build().toString();
             logger.info("CatedraClient constructed, WebClient.toString(): {}", base);
         } catch (Exception e) {
             logger.debug("No se pudo obtener representación del WebClient: {}", e.getMessage());
@@ -29,7 +32,7 @@ public class CatedraClient {
 
     public RegistrarUsuarioResponse registarUsuario(RegistrarUsuarioRequest request) {
         logger.info("Invocando endpoint POST /agregar_usuario usando WebClient");
-        return webClient.post()
+        return catedraClient.post()
                 .uri("/v1/agregar_usuario")
                 .bodyValue(request)
                 .retrieve()
@@ -39,7 +42,7 @@ public class CatedraClient {
 
     public LoginResponse loguearUsuario(LoginRequest request) {
         logger.info("Invocando endpoint POST /authenticate usando WebClient");
-        return webClient.post()
+        return catedraClient.post()
                 .uri("/authenticate")
                 .bodyValue(request)
                 .retrieve()
@@ -49,7 +52,7 @@ public class CatedraClient {
 
     public List<EventoResumidoResponse> conseguirEventosResumidos() {
         logger.info("Invocando endpoint GET /eventos_resumidos usando WebClient");
-        return webClient.get()
+        return catedraClient.get()
                 .uri("/endpoints/v1/eventos-resumidos")
                 .header("Authorization", "Bearer " + token)
                 .retrieve()
@@ -59,7 +62,7 @@ public class CatedraClient {
 
     public List<EventoResponse> conseguirEventos() {
         logger.info("Invocando endpoint GET /eventos usando WebClient");
-        return webClient.get()
+        return catedraClient.get()
                 .uri("/endpoints/v1/eventos")
                 .header("Authorization", "Bearer " + token)
                 .retrieve()
@@ -69,11 +72,22 @@ public class CatedraClient {
 
     public EventoResponse conseguirEventosPorId(Long id) {
         logger.info("Invocando endpoint GET /eventos/{id} usando WebClient");
-        return webClient.get()
-                .uri("/endpoints/v1/eventos/{id}", id)
+        return catedraClient.get()
+                .uri("/endpoints/v1/evento/{id}", id)
                 .header("Authorization", "Bearer " + token)
                 .retrieve()
                 .bodyToMono(EventoResponse.class)
+                .block();
+    }
+
+    public BloqueoAsientosResponse bloquearAsientos(BloqueoAsientosRequest request) {
+        logger.info("Invocando endpoint POST /bloquear-asientos usando WebClient");
+        return catedraClient.post()
+                .uri("/endpoints/v1/bloquear-asientos")
+                .header("Authorization", "Bearer " + token)
+                .bodyValue(request)
+                .retrieve()
+                .bodyToMono(BloqueoAsientosResponse.class)
                 .block();
     }
 

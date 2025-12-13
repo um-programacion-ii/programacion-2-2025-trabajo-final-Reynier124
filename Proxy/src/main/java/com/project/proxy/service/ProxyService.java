@@ -35,4 +35,8 @@ public class ProxyService {
         return catedraClient.conseguirEventosPorId(id);
     }
 
+    public BloqueoAsientosResponse bloquearAsientos(BloqueoAsientosRequest request) {
+        return catedraClient.bloquearAsientos(request);
+    }
+
 }

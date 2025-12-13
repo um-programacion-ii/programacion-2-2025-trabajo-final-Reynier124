@@ -5,11 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventoTipoDTO implements Serializable {
-    private String eventoTipoNombre;
-    private String eventoTipoDescripcion;
+public class SesionRedisDTO implements Serializable {
+    private String token;
+    private Long sesionId;
+    private Long usuarioId;
 
 }

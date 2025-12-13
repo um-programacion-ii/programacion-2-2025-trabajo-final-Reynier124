@@ -13,6 +13,6 @@ public class ConseguirEventosResponse {
     private Integer columnaAsientos;
     private Double precioEntrada;
     private EventoTipo eventoTipo;
-    private Integrantes integrantes;
+    private IntegrantesDTO integrantesDTO;
     private Long id;
 }

@@ -8,18 +8,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Configuration
-public class WebClientConfig {
+public class CatedraWebClientConfig {
 
     @Value("${proxy-target.base-url}")
     private String baseUrl;
 
-    private static final Logger logger = LoggerFactory.getLogger(WebClientConfig.class);
+    private static final Logger logger = LoggerFactory.getLogger(CatedraWebClientConfig.class);
 
-    @Bean
-    public WebClient WebClient() {
+    @Bean(name = "catedraWebClient")
+    public WebClient CatedraWebClient(WebClient.Builder builder) {
         // log the base URL so you can see what value Spring inyectó desde application.yml
         logger.info("proxy-target.base-url={}", baseUrl);
-        return WebClient.builder()
+        return builder
                 .baseUrl(baseUrl)
                 .build();
     }

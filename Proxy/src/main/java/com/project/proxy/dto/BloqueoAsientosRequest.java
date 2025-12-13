@@ -4,10 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventoTipo {
-    private String eventoTipoNombre;
-    private String eventoTipoDescripcion;
+public class BloqueoAsientosRequest {
+    private Long eventoId;
+    private List<AsientosDTO> asientos;
 }

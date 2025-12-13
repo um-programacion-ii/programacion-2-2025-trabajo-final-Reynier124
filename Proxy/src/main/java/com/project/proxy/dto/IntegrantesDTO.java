@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventoTipo {
-    private String eventoTipoNombre;
-    private String eventoTipoDescripcion;
+public class IntegrantesDTO {
+    private String nombre;
+    private String apellido;
+    private String identificacion;
 }

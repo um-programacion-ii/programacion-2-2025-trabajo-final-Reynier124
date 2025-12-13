@@ -40,4 +40,9 @@ public class ProxyController {
     public EventoResponse conseguirEventosPorId(@PathVariable Long id) {
         return proxyService.conseguirEventosPorId(id);
     }
+
+    @PostMapping("/bloquear-asientos")
+    public BloqueoAsientosResponse bloquearAsientos(@RequestBody BloqueoAsientosRequest request) {
+        return proxyService.bloquearAsientos(request);
+    }
 }
