@@ -68,6 +68,7 @@
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/AsientosDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/AsientosProxyCompletosDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/AsientosProxyDTO.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/AsientosVentasDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/BloqueoAsientosRequest.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/BloqueoAsientosResponse.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/EventoDTO.java
@@ -80,6 +81,8 @@
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/SesionRedisDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/UserDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/UsuarioDTO.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/VentaAsientosRequest.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/VentaAsientosResponse.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/VentaDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/package-info.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/impl/AsientosServiceImpl.java

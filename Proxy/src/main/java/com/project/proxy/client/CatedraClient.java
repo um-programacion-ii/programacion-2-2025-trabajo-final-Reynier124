@@ -91,7 +91,36 @@ public class CatedraClient {
                 .block();
     }
 
+    public VentaAsientosResponse realizarVenta(VentaAsientosRequest request) {
+        logger.info("Invocando endpoint POST /realizar-venta usando WebClient");
+        return catedraClient.post()
+                .uri("/endpoints/v1/realizar-venta")
+                .header("Authorization", "Bearer " + token)
+                .bodyValue(request)
+                .retrieve()
+                .bodyToMono(VentaAsientosResponse.class)
+                .block();
+    }
 
+    public List<VentaAsientosResponse> listarVentas() {
+        logger.info("Invocando endpoint GET /listar-ventas usando WebClient");
+        return catedraClient.get()
+                .uri("/endpoints/v1/listar-ventas")
+                .header("Authorization", "Bearer " + token)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<VentaAsientosResponse>>() {})
+                .block();
+    }
+
+    public VentaAsientosResponse listarVentasPorUsuario(Long Id) {
+        logger.info("Invocando endpoint GET /listar-ventas/{usuarioId} usando WebClient");
+        return catedraClient.get()
+                .uri("/endpoints/v1/listar-ventas/{usuarioId}", Id)
+                .header("Authorization", "Bearer " + token)
+                .retrieve()
+                .bodyToMono(VentaAsientosResponse.class)
+                .block();
+    }
 
 
 }

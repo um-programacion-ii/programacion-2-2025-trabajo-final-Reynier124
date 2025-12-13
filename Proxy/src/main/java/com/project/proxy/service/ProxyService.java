@@ -39,4 +39,16 @@ public class ProxyService {
         return catedraClient.bloquearAsientos(request);
     }
 
+    public VentaAsientosResponse realizarVenta(VentaAsientosRequest request) {
+        return catedraClient.realizarVenta(request);
+    }
+
+    public List<VentaAsientosResponse> listarVentas() {
+        return catedraClient.listarVentas();
+    }
+
+    public VentaAsientosResponse listarVentasPorId(Long Id) {
+        return catedraClient.listarVentasPorUsuario(Id);
+    }
+
 }

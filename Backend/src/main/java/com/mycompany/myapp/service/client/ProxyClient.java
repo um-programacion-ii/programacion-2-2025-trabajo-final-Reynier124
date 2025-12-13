@@ -1,9 +1,6 @@
 package com.mycompany.myapp.service.client;
 
-import com.mycompany.myapp.service.dto.BloqueoAsientosRequest;
-import com.mycompany.myapp.service.dto.BloqueoAsientosResponse;
-import com.mycompany.myapp.service.dto.EventoDTO;
-import com.mycompany.myapp.service.dto.EventoResumidoDTO;
+import com.mycompany.myapp.service.dto.*;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -66,6 +63,36 @@ public class ProxyClient {
             .bodyValue(request)
             .retrieve()
             .bodyToMono(BloqueoAsientosResponse.class)
+            .block();
+    }
+
+    public VentaAsientosResponse realizarVenta(VentaAsientosRequest request) {
+        return proxyWebClient.post()
+            .uri("/proxy/realizar-venta")
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON)
+            .bodyValue(request)
+            .retrieve()
+            .bodyToMono(VentaAsientosResponse.class)
+            .block();
+    }
+
+    public List<VentaAsientosResponse> listarVentas() {
+        return proxyWebClient.get()
+            .uri("/proxy/listar-ventas")
+            .accept(MediaType.APPLICATION_JSON)
+            .retrieve()
+            .bodyToFlux(VentaAsientosResponse.class)
+            .collectList()
+            .block();
+    }
+
+    public VentaAsientosResponse listarVentaPorId(Long id) {
+        return proxyWebClient.get()
+            .uri("/proxy/listar-ventas/{id}", id)
+            .accept(MediaType.APPLICATION_JSON)
+            .retrieve()
+            .bodyToMono(VentaAsientosResponse.class)
             .block();
     }
 

@@ -1,10 +1,7 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.service.client.ProxyClient;
-import com.mycompany.myapp.service.dto.BloqueoAsientosRequest;
-import com.mycompany.myapp.service.dto.BloqueoAsientosResponse;
-import com.mycompany.myapp.service.dto.EventoDTO;
-import com.mycompany.myapp.service.dto.EventoResumidoDTO;
+import com.mycompany.myapp.service.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,5 +33,17 @@ public class CatedraService {
 
     public BloqueoAsientosResponse bloqueoAsiento(BloqueoAsientosRequest request){
         return proxyClient.bloqueoAsiento(request);
+    }
+
+    public VentaAsientosResponse realizarVenta(VentaAsientosRequest request) {
+        return proxyClient.realizarVenta(request);
+    }
+
+    public List<VentaAsientosResponse> listarVentas() {
+        return proxyClient.listarVentas();
+    }
+
+    public VentaAsientosResponse listarVentaPorId(Long id) {
+        return proxyClient.listarVentaPorId(id);
     }
 }
