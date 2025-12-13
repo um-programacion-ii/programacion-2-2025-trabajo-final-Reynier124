@@ -1,8 +1,12 @@
 package com.mycompany.myapp.web.rest;
 
+import com.mycompany.myapp.enumeration.Changes;
 import com.mycompany.myapp.repository.EventoRepository;
 import com.mycompany.myapp.service.EventoService;
 import com.mycompany.myapp.service.dto.EventoDTO;
+import com.mycompany.myapp.service.dto.EventoKafkaDTO;
+import com.mycompany.myapp.service.impl.EventoServiceImpl;
+import com.mycompany.myapp.service.impl.EventoSyncService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -27,6 +31,8 @@ public class EventoResource {
     private static final Logger LOG = LoggerFactory.getLogger(EventoResource.class);
 
     private static final String ENTITY_NAME = "evento";
+    private final EventoSyncService eventoSyncService;
+
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -35,9 +41,10 @@ public class EventoResource {
 
     private final EventoRepository eventoRepository;
 
-    public EventoResource(EventoService eventoService, EventoRepository eventoRepository) {
+    public EventoResource(EventoService eventoService, EventoRepository eventoRepository, EventoSyncService eventoSyncService) {
         this.eventoService = eventoService;
         this.eventoRepository = eventoRepository;
+        this.eventoSyncService = eventoSyncService;
     }
 
     /**
@@ -165,5 +172,39 @@ public class EventoResource {
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @PostMapping("/sincronizar")
+    public ResponseEntity<String> sincronizar(@RequestBody EventoKafkaDTO cambio) {
+
+        Long eventoId = cambio.getEventoId();
+        Changes tipo = cambio.getTipoCambio();
+
+        switch (tipo) {
+            case NUEVO_EVENTO:
+                eventoSyncService.sincronizarNuevoEvento(eventoId);
+                break;
+
+            case EVENTO_MODIFICADO:
+                eventoSyncService.actualizarEvento(eventoId, null);
+                break;
+
+            case EVENTO_CANCELADO:
+                eventoSyncService.cancelarEvento(eventoId);
+                break;
+
+            case EVENTO_EXPIRADO:
+                eventoSyncService.marcarEventoExpirado(eventoId);
+                break;
+
+            case ASIENTOS_ACTUALIZADOS:
+                eventoSyncService.actualizarAsientos(eventoId);
+                break;
+
+            default:
+                return ResponseEntity.badRequest().body("Tipo de cambio no reconocido: " + tipo);
+        }
+
+        return ResponseEntity.ok("Notificación procesada correctamente");
     }
 }

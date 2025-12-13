@@ -54,6 +54,7 @@ public class SecurityConfiguration {
         http
             .cors(withDefaults())
             .csrf(csrf -> csrf.disable())
+            .headers(headers -> headers.frameOptions(frame -> frame.disable()))
             .addFilterBefore(sessionFilterRedis, UsernamePasswordAuthenticationFilter.class)
             .authorizeHttpRequests(authz ->
                 // prettier-ignore
@@ -72,6 +73,7 @@ public class SecurityConfiguration {
                     .requestMatchers(mvc.pattern("/management/info")).permitAll()
                     .requestMatchers(mvc.pattern("/management/prometheus")).permitAll()
                     .requestMatchers(mvc.pattern("/management/**")).hasAuthority(AuthoritiesConstants.ADMIN)
+                    .requestMatchers(antMatcher("/h2-console/**")).permitAll()
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .exceptionHandling(exceptions ->

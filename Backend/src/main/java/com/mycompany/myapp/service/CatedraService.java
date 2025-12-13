@@ -1,6 +1,8 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.service.client.ProxyClient;
+import com.mycompany.myapp.service.dto.BloqueoAsientosRequest;
+import com.mycompany.myapp.service.dto.BloqueoAsientosResponse;
 import com.mycompany.myapp.service.dto.EventoDTO;
 import com.mycompany.myapp.service.dto.EventoResumidoDTO;
 import org.springframework.stereotype.Service;
@@ -30,5 +32,9 @@ public class CatedraService {
 
     public List<EventoResumidoDTO> getEventosResumidos() {
         return proxyClient.getEventosResumidos();
+    }
+
+    public BloqueoAsientosResponse bloqueoAsiento(BloqueoAsientosRequest request){
+        return proxyClient.bloqueoAsiento(request);
     }
 }

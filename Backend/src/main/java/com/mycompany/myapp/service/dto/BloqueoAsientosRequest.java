@@ -4,12 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
+import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventoTipoDTO implements Serializable {
-    private String eventoTipoNombre;
-    private String eventoTipoDescripcion;
-
+public class BloqueoAsientosRequest {
+    private Long eventoId;
+    private List<AsientosProxyDTO> asientos;
 }

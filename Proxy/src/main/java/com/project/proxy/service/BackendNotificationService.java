@@ -1,12 +1,17 @@
 package com.project.proxy.service;
 
+import com.project.proxy.client.BackendClient;
 import com.project.proxy.dto.EventoKafkaDTO;
 import com.project.proxy.dto.NotificationStats;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import tools.jackson.databind.ObjectMapper;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -16,34 +21,43 @@ public class BackendNotificationService {
     private RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
-    private ObjectMapper objectMapper;
-
-    // Canales de Redis para diferentes tipos de notificaciones
-    private static final String CHANNEL_EVENTOS_CAMBIOS = "eventos:cambios";
-    private static final String CHANNEL_ASIENTOS_CAMBIOS = "asientos:cambios";
+    private BackendClient backendClient;
 
     /**
      * Notifica al backend sobre cambios en eventos
      */
     public void notificarCambioEvento(EventoKafkaDTO cambio) {
+        log.info("Notificando cambio de evento {}", cambio.getEventoId());
+
         try {
-            log.info("Publicando cambio de evento {} en Redis channel: {}",
-                    cambio.getEventoId(), CHANNEL_EVENTOS_CAMBIOS);
+            Map<String, Object> body = prepararBody(cambio);
 
-            // Publicar el mensaje en el canal
-            redisTemplate.convertAndSend(CHANNEL_EVENTOS_CAMBIOS, cambio);
-
-            log.info("Notificación enviada exitosamente al backend");
-
-            // Opcional: Guardar en Redis también para consulta posterior
-            guardarUltimoCambio(cambio);
+            backendClient.notificarCambioEvento(body)
+                    .doOnSuccess(res -> {
+                        log.info("Notificación enviada exitosamente");
+                        guardarUltimoCambio(cambio);
+                    })
+                    .doOnError(err -> {
+                        log.error("Error notificando al backend: {}", err.getMessage());
+                        manejarErrorNotificacion(cambio, err);
+                    })
+                    .subscribe();
 
         } catch (Exception e) {
-            log.error("Error publicando notificación en Redis: {}", e.getMessage(), e);
-            // Implementar estrategia de fallback
+            log.error("Error preparando notificación: {}", e.getMessage());
             manejarErrorNotificacion(cambio, e);
         }
     }
+
+    private Map<String, Object> prepararBody(EventoKafkaDTO cambio) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("tipo", cambio.getTipoCambio());
+        body.put("eventoId", cambio.getEventoId());
+        body.put("evento", cambio.getEventoId());
+        body.put("timestamp", LocalDateTime.now());
+        return body;
+    }
+
 
     /**
      * Guarda el último cambio en Redis para que el backend pueda consultarlo
@@ -65,7 +79,7 @@ public class BackendNotificationService {
     /**
      * Maneja errores cuando no se puede notificar
      */
-    private void manejarErrorNotificacion(EventoKafkaDTO cambio, Exception e) {
+    private void manejarErrorNotificacion(EventoKafkaDTO cambio, Throwable e) {
         // Opción 1: Guardar en una cola de reintentos
         try {
             String retryKey = "eventos:retry-queue";
