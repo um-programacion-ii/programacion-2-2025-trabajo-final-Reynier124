@@ -45,4 +45,19 @@ public class ProxyController {
     public BloqueoAsientosResponse bloquearAsientos(@RequestBody BloqueoAsientosRequest request) {
         return proxyService.bloquearAsientos(request);
     }
+
+    @PostMapping("/realizar-venta")
+    public VentaAsientosResponse bloquearAsientos(@RequestBody VentaAsientosRequest request) {
+        return proxyService.realizarVenta(request);
+    }
+
+    @GetMapping("/listar-ventas")
+    public List<VentaAsientosResponse> listarVentas() {
+        return proxyService.listarVentas();
+    }
+
+    @GetMapping("/listar-ventas/{id}")
+    public VentaAsientosResponse listarVentaPorId(@PathVariable Long id) {
+        return proxyService.listarVentasPorId(id);
+    }
 }

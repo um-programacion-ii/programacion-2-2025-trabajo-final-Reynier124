@@ -1,10 +1,7 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.service.CatedraService;
-import com.mycompany.myapp.service.dto.BloqueoAsientosRequest;
-import com.mycompany.myapp.service.dto.BloqueoAsientosResponse;
-import com.mycompany.myapp.service.dto.EventoDTO;
-import com.mycompany.myapp.service.dto.EventoResumidoDTO;
+import com.mycompany.myapp.service.dto.*;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,5 +40,20 @@ public class CatedraController {
     @PostMapping("/bloqueo-asientos")
     public BloqueoAsientosResponse bloqueoAsientos(@RequestBody BloqueoAsientosRequest body) {
         return catedraService.bloqueoAsiento(body);
+    }
+
+    @PostMapping("/realizar-venta")
+    public VentaAsientosResponse realizarVenta(@RequestBody VentaAsientosRequest body) {
+        return catedraService.realizarVenta(body);
+    }
+
+    @GetMapping("/listar-ventas")
+    public List<VentaAsientosResponse> listarVentas() {
+        return catedraService.listarVentas();
+    }
+
+    @GetMapping("/listar-ventas/{id}")
+    public VentaAsientosResponse listarVentaPorId(@PathVariable Long id) {
+        return catedraService.listarVentaPorId(id);
     }
 }
