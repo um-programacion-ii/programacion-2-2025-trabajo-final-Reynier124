@@ -22,6 +22,6 @@ public class EventoResponse {
     private Integer columnAsientos;
     private Double precioEntrada;
     private EventoTipo eventoTipo;
-    private List<Integrantes> integrantes;
+    private List<IntegrantesDTO> integrantes;
     private Long id;
 }

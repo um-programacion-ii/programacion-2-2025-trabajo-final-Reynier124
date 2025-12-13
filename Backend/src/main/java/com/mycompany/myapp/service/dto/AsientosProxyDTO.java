@@ -4,12 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventoTipoDTO implements Serializable {
-    private String eventoTipoNombre;
-    private String eventoTipoDescripcion;
-
+public class AsientosProxyDTO {
+    private Integer fila;
+    private Integer columna;
 }

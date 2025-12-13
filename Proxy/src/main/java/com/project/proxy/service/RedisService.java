@@ -7,15 +7,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class RedisService {
-    /*
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
-    private final ObjectMapper objectMapper;
-
-    public RedisService() {
-        this.objectMapper = new ObjectMapper();
-        this.objectMapper.registerModule(new JavaTimeModule());
+    public void save(String key, String value) {
+        redisTemplate.opsForValue().set(key, value);
+        System.out.println("DATA REDIS = " + key + " : " + value);
     }
-    */
+
+    public String get(String key) {
+        System.out.println("GET DATA REDIS KEY = " + key);
+        return redisTemplate.opsForValue().get(key).toString();
+    }
 }

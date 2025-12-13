@@ -215,7 +215,7 @@ public class EventoSyncService {
         destino.setDireccion(origen.getDireccion());
         destino.setImagen(origen.getImagen());
         destino.setFilaAsientos(origen.getFilaAsientos());
-        destino.setColumnaAsientos(origen.getColumnaAsientos());
+        destino.setColumnAsientos(origen.getColumnAsientos());
         destino.setPrecioEntrada(origen.getPrecioEntrada());
         // No copiar el estado, mantener el actual
         // Copiar otros campos según tu entidad

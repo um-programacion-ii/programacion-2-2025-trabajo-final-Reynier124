@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Integrantes {
-    private String nombre;
-    private String apellido;
-    private String identificacion;
+public class AsientosDTO {
+    private Integer fila;
+    private Integer columna;
 }

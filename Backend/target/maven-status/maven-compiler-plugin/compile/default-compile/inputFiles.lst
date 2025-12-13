@@ -46,6 +46,7 @@
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/repository/package-info.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/security/AuthoritiesConstants.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/security/DomainUserDetailsService.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/security/JwtUtils.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/security/SecurityUtils.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/security/SpringSecurityAuditorAware.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/security/UserNotActivatedException.java
@@ -65,6 +66,10 @@
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/client/ProxyClient.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/AdminUserDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/AsientosDTO.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/AsientosProxyCompletosDTO.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/AsientosProxyDTO.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/BloqueoAsientosRequest.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/BloqueoAsientosResponse.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/EventoDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/EventoKafkaDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Backend/src/main/java/com/mycompany/myapp/service/dto/EventoResumidoDTO.java

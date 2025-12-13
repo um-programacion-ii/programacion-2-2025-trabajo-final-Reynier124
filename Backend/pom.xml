@@ -78,6 +78,29 @@
 
     <dependencies>
         <dependency>
+          <groupId>io.jsonwebtoken</groupId>
+          <artifactId>jjwt-api</artifactId>
+          <version>0.11.5</version>
+        </dependency>
+        <dependency>
+          <groupId>io.jsonwebtoken</groupId>
+          <artifactId>jjwt-impl</artifactId>
+          <version>0.11.5</version>
+          <scope>runtime</scope>
+        </dependency>
+        <dependency>
+          <groupId>io.jsonwebtoken</groupId>
+          <artifactId>jjwt-jackson</artifactId>
+          <version>0.11.5</version>
+          <scope>runtime</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok-mapstruct-binding</artifactId>
+          <version>0.2.0</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
@@ -309,7 +332,27 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                  <annotationProcessorPaths>
+                    <path>
+                      <groupId>org.mapstruct</groupId>
+                      <artifactId>mapstruct-processor</artifactId>
+                      <version>${mapstruct.version}</version>
+                    </path>
+                    <path>
+                      <groupId>org.projectlombok</groupId>
+                      <artifactId>lombok</artifactId>
+                      <version>${lombok.version}</version>
+                    </path>
+                    <path>
+                      <groupId>org.projectlombok</groupId>
+                      <artifactId>lombok-mapstruct-binding</artifactId>
+                      <version>0.2.0</version>
+                    </path>
+                  </annotationProcessorPaths>
+                </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
