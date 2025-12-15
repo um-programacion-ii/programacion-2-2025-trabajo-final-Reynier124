@@ -30,10 +30,17 @@ public class JwtFilter extends OncePerRequestFilter {
             String token = header.substring(7);
 
             try {
-                var claims = jwtUtils.validateToken(token);
+                if (!jwtUtils.validateToken(token)) {
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid JWT");
+                    return;
+                }
 
+                String username = jwtUtils.getSubjectFromToken(token);
 
-                String username = claims.getBody().getSubject();
+                if (username == null) {
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid JWT");
+                    return;
+                }
 
                 request.setAttribute("user", username);
 
@@ -59,3 +66,4 @@ public class JwtFilter extends OncePerRequestFilter {
                 || path.startsWith("/h2-console");
     }
 }
+

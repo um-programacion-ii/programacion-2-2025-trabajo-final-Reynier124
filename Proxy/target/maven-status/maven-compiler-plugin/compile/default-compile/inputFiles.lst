@@ -9,11 +9,13 @@
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/config/RedisConfig.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/config/SecurityConfig.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/config/WebClientBuilderConfig.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/controller/AsientosController.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/controller/GlobalExceptionHandler.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/controller/ProxyController.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/domain/ProxyKafkaListener.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/AsientosCompletoDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/AsientosDTO.java
+/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/AsientosRedisDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/AsientosVentasDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/BloqueoAsientosRequest.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/BloqueoAsientosResponse.java

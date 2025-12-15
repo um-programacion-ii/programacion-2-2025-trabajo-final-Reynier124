@@ -174,37 +174,4 @@ public class EventoResource {
             .build();
     }
 
-    @PostMapping("/sincronizar")
-    public ResponseEntity<String> sincronizar(@RequestBody EventoKafkaDTO cambio) {
-
-        Long eventoId = cambio.getEventoId();
-        Changes tipo = cambio.getTipoCambio();
-
-        switch (tipo) {
-            case NUEVO_EVENTO:
-                eventoSyncService.sincronizarNuevoEvento(eventoId);
-                break;
-
-            case EVENTO_MODIFICADO:
-                eventoSyncService.actualizarEvento(eventoId, null);
-                break;
-
-            case EVENTO_CANCELADO:
-                eventoSyncService.cancelarEvento(eventoId);
-                break;
-
-            case EVENTO_EXPIRADO:
-                eventoSyncService.marcarEventoExpirado(eventoId);
-                break;
-
-            case ASIENTOS_ACTUALIZADOS:
-                eventoSyncService.actualizarAsientos(eventoId);
-                break;
-
-            default:
-                return ResponseEntity.badRequest().body("Tipo de cambio no reconocido: " + tipo);
-        }
-
-        return ResponseEntity.ok("Notificación procesada correctamente");
-    }
 }

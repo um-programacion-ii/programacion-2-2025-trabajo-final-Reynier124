@@ -5,6 +5,7 @@ import com.project.proxy.dto.EventoKafkaDTO;
 import com.project.proxy.dto.NotificationStats;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
@@ -24,88 +26,80 @@ public class BackendNotificationService {
     private BackendClient backendClient;
 
     /**
-     * Notifica al backend sobre cambios en eventos
+     * Notifica al backend que debe sincronizar los eventos
+     * @param mensajeKafka El mensaje recibido de Kafka
      */
-    public void notificarCambioEvento(EventoKafkaDTO cambio) {
-        log.info("Notificando cambio de evento {}", cambio.getEventoId());
+    public void notificarSincronizacionEventos(String mensajeKafka) {
+        log.info("Notificando al backend sobre cambios en eventos");
 
         try {
-            Map<String, Object> body = prepararBody(cambio);
+            Map<String, Object> body = prepararNotificacion(mensajeKafka);
 
             backendClient.notificarCambioEvento(body)
                     .doOnSuccess(res -> {
-                        log.info("Notificación enviada exitosamente");
-                        guardarUltimoCambio(cambio);
+                        log.info("Backend notificado exitosamente");
+                        guardarUltimaNotificacion(mensajeKafka);
                     })
                     .doOnError(err -> {
                         log.error("Error notificando al backend: {}", err.getMessage());
-                        manejarErrorNotificacion(cambio, err);
+                        manejarErrorNotificacion(mensajeKafka, err);
                     })
                     .subscribe();
 
         } catch (Exception e) {
             log.error("Error preparando notificación: {}", e.getMessage());
-            manejarErrorNotificacion(cambio, e);
+            manejarErrorNotificacion(mensajeKafka, e);
         }
     }
 
-    private Map<String, Object> prepararBody(EventoKafkaDTO cambio) {
+    /**
+     * Prepara el body de la notificación al backend
+     */
+    private Map<String, Object> prepararNotificacion(String mensajeKafka) {
         Map<String, Object> body = new HashMap<>();
-        body.put("tipo", cambio.getTipoCambio());
-        body.put("eventoId", cambio.getEventoId());
-        body.put("evento", cambio.getEventoId());
+        body.put("tipo", "SINCRONIZAR_EVENTOS");
+        body.put("mensaje", mensajeKafka);
         body.put("timestamp", LocalDateTime.now());
         return body;
     }
 
-
     /**
-     * Guarda el último cambio en Redis para que el backend pueda consultarlo
-     * si perdió la notificación por Pub/Sub
+     * Guarda la última notificación en Redis para auditoría
      */
-    private void guardarUltimoCambio(EventoKafkaDTO cambio) {
+    private void guardarUltimaNotificacion(String mensaje) {
         try {
-            String key = "evento:ultimo-cambio:" + cambio.getEventoId();
-            redisTemplate.opsForValue().set(key, cambio);
-            // Expira en 1 hora
-            redisTemplate.expire(key, 3600, java.util.concurrent.TimeUnit.SECONDS);
+            String key = "eventos:ultima-notificacion";
 
-            log.debug("Último cambio guardado en Redis con key: {}", key);
+            Map<String, Object> notificacion = new HashMap<>();
+            notificacion.put("mensaje", mensaje);
+            notificacion.put("timestamp", LocalDateTime.now().toString());
+
+            redisTemplate.opsForValue().set(key, notificacion);
+            redisTemplate.expire(key, 1, TimeUnit.HOURS);
+
+            log.debug("Última notificación guardada en Redis");
         } catch (Exception e) {
-            log.warn("No se pudo guardar último cambio: {}", e.getMessage());
+            log.warn("No se pudo guardar última notificación en Redis: {}", e.getMessage());
         }
     }
 
     /**
-     * Maneja errores cuando no se puede notificar
+     * Maneja errores cuando no se puede notificar al backend
      */
-    private void manejarErrorNotificacion(EventoKafkaDTO cambio, Throwable e) {
-        // Opción 1: Guardar en una cola de reintentos
+    private void manejarErrorNotificacion(String mensaje, Throwable e) {
         try {
             String retryKey = "eventos:retry-queue";
-            redisTemplate.opsForList().rightPush(retryKey, cambio);
-            log.info("Cambio agregado a cola de reintentos");
+
+            Map<String, Object> retryItem = new HashMap<>();
+            retryItem.put("mensaje", mensaje);
+            retryItem.put("timestamp", LocalDateTime.now().toString());
+            retryItem.put("error", e.getMessage());
+
+            redisTemplate.opsForList().rightPush(retryKey, retryItem);
+            log.info("Notificación agregada a cola de reintentos");
         } catch (Exception ex) {
-            log.error("Error crítico: no se pudo notificar ni guardar en cola de reintentos");
+            log.error("Error crítico: no se pudo notificar ni guardar en cola de reintentos: {}", ex.getMessage());
         }
-    }
-
-    /**
-     * Obtiene estadísticas de notificaciones enviadas
-     */
-    public NotificationStats obtenerEstadisticas() {
-        NotificationStats stats = new NotificationStats();
-
-        try {
-            // Contar elementos en cola de reintentos
-            Long pendientes = redisTemplate.opsForList().size("eventos:retry-queue");
-            stats.setNotificacionesPendientes(pendientes != null ? pendientes : 0);
-
-        } catch (Exception e) {
-            log.error("Error obteniendo estadísticas: {}", e.getMessage());
-        }
-
-        return stats;
     }
 
 }
