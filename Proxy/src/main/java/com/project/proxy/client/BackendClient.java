@@ -1,5 +1,6 @@
 package com.project.proxy.client;
 
+import com.project.proxy.config.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,10 +23,9 @@ public class BackendClient {
     @Autowired
     @Qualifier("backendWebClient")
     private  WebClient backendClient;
-    /*
-    @Value("${backend.jwt.token}")
-    private String backendToken;
-    */
+    @Autowired
+    private JwtUtils jwtUtils;
+
     private static final int MAX_REINTENTOS = 3;
     private static final Duration TIMEOUT = Duration.ofSeconds(10);
     private static final Duration REINTENTO_DELAY = Duration.ofSeconds(2);
@@ -44,10 +44,11 @@ public class BackendClient {
      * Envia la notificación HTTP al backend
      */
     public Mono<Map<String, Object>> notificarCambioEvento(Map<String, Object> body) {
-
+        String backendToken = jwtUtils.generateToken("proxy-service");
+        log.info("Token generado: {}", backendToken);
         return backendClient.post()
-                .uri("/api/eventos/sincronizar")
-                /*.header(HttpHeaders.AUTHORIZATION, "Bearer " + backendToken)*/
+                .uri("/api/internal/notificacion/eventos/cambios")
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + backendToken)
                 .bodyValue(body)
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {})

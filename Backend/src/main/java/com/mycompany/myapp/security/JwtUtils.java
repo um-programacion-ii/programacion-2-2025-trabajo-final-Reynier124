@@ -2,7 +2,6 @@ package com.mycompany.myapp.security;
 
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -11,13 +10,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
-
-import static tech.jhipster.config.JHipsterDefaults.Security.Authentication.Jwt.base64Secret;
 
 @Component
 @Slf4j
@@ -29,7 +27,7 @@ public class JwtUtils {
     @Value("${jhipster.security.authentication.jwt.token-validity-in-seconds}")
     private long jwtValiditySeconds;
 
-    private Key key;
+    private SecretKey key;
 
     @PostConstruct
     public void init() {
@@ -42,7 +40,8 @@ public class JwtUtils {
 
         try {
             log.info("Inicializando JwtUtils con secreto Base64");
-            key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(base64Secret));
+            byte[] keyBytes = Base64.getDecoder().decode(base64Secret);
+            this.key = Keys.hmacShaKeyFor(keyBytes);
             log.info("JwtUtils inicializado correctamente");
         } catch (IllegalArgumentException e) {
             log.error("ERROR: El secreto Base64 no es válido: {}", e.getMessage());
@@ -62,10 +61,62 @@ public class JwtUtils {
             .compact();
     }
 
-    public Jws<Claims> validateToken(String token) {
-        return Jwts.parserBuilder()
-            .setSigningKey(key)
-            .build()
-            .parseClaimsJws(token);
+    /**
+     * Obtiene la clave secreta para validar el token
+     */
+    private SecretKey getSigningKey() {
+        return key;
+    }
+
+    /**
+     * Valida el token JWT
+     */
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder()
+                .setSigningKey(getSigningKey())
+                .build()
+                .parseClaimsJws(token);
+            return true;
+        } catch (Exception e) {
+            log.error("Token inválido: {}", e.getMessage());
+            return false;
+        }
+    }
+    /**
+     * Extrae todos los claims del token
+     */
+    public Claims getClaims(String token) {
+        try {
+            return Jwts.parserBuilder()
+                .setSigningKey(getSigningKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        } catch (Exception e) {
+            log.error("Error extrayendo claims: {}", e.getMessage());
+            return null;
+        }
+    }
+    /**
+     * Extrae el subject (username) del token
+     */
+    public String getSubjectFromToken(String token) {
+        Claims claims = getClaims(token);
+        return claims != null ? claims.getSubject() : null;
+    }
+    /**
+     * Verifica si el token ha expirado
+     */
+    public boolean isTokenExpired(String token) {
+        try {
+            Claims claims = getClaims(token);
+            if (claims == null) return true;
+
+            Date expiration = claims.getExpiration();
+            return expiration.before(new Date());
+        } catch (Exception e) {
+            return true;
+        }
     }
 }

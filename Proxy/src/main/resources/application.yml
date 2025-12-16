@@ -5,7 +5,7 @@ proxy-target:
   base-url: "http://192.168.194.250:8080/api"
 
 kafka:
-  bootstrap-servers: localhost:9092
+  bootstrap-servers: 192.168.194.250:9092
   consumer:
     group-id: reynier
   topic:
@@ -26,3 +26,4 @@ backend:
 app:
   jwt:
     base64-secret: M2FmZTY3MTc3YTMzN2Q4YjJjNmMzYzcwNDdjNTU0NDI0MjczYTI2ZjY0NmNlMzQwOThlMzQwNDc0ZjZiZWZkYmRjMzQ3MWJhNThmZGZmNTQ2MTFlZjdhY2E1ZWFlZmRkMDVjMWE5NjMxZTZhNTIwYzAwNDZlNTRhYWJhZTE2MzI=
+    expiration: 3600000

@@ -18,7 +18,7 @@
     },
     {
       "fieldName": "fecha",
-      "fieldType": "LocalDate"
+      "fieldType": "Instant"
     },
     {
       "fieldName": "direccion",
@@ -54,7 +54,7 @@
     },
     {
       "fieldName": "ultimaActualizacion",
-      "fieldType": "LocalDate"
+      "fieldType": "Instant"
     }
   ],
   "jpaMetamodelFiltering": false,

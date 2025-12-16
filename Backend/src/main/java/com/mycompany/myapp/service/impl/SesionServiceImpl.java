@@ -32,12 +32,12 @@ public class SesionServiceImpl implements SesionService {
 
     private final SesionMapper sesionMapper;
 
-    private final RedisSesionService redisSesionService;
+    @Autowired
+    private RedisSesionService redisSesionService;
 
-    public SesionServiceImpl(SesionRepository sesionRepository, SesionMapper sesionMapper, RedisSesionService redisSesionService) {
+    public SesionServiceImpl(SesionRepository sesionRepository, SesionMapper sesionMapper) {
         this.sesionRepository = sesionRepository;
         this.sesionMapper = sesionMapper;
-        this.redisSesionService = redisSesionService;
     }
 
     @Override

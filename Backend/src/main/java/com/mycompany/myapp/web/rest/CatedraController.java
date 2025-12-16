@@ -6,6 +6,8 @@ import jakarta.annotation.security.PermitAll;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/service")
@@ -35,6 +37,39 @@ public class CatedraController {
     @GetMapping("/eventos-resumidos")
     public List<EventoResumidoDTO> getEventosResumidos() {
         return catedraService.getEventosResumidos();
+    }
+
+    @GetMapping("/asientos/evento/{eventoId}")
+    public AsientosRedisDTO getAsientosEvento(@PathVariable Long eventoId) {
+        return catedraService.getAsientos(eventoId);
+    }
+
+    @GetMapping("/asientos/evento/{eventoId}/no-disponibles")
+    public List<String> getAsientosNoDisponibles(@PathVariable Long eventoId) {
+        return catedraService.getAsientosNoDisponibles(eventoId);
+    }
+    @GetMapping("/asientos/evento/{eventoId}/vendidos")
+    public List<AsientosRedisDTO> getAsientosVendidos(@PathVariable Long eventoId) {
+        return catedraService.getAsientosVendidos(eventoId);
+    }
+    @GetMapping("/asientos/evento/{eventoId}/bloqueados")
+    public List<AsientosRedisDTO> getAsientosBloqueados(@PathVariable Long eventoId) {
+        return catedraService.getAsientosBloqueados(eventoId);
+    }
+
+    @GetMapping("/estadisticas/evento/{eventoId}")
+    public Map<String, Object> getEstadisticasEvento(@PathVariable Long eventoId) {
+        return catedraService.getEstadisticasEvento(eventoId);
+    }
+
+    @GetMapping("/debug/keys")
+    public Set<String> getAllKeys() {
+        return catedraService.getAllKeys();
+    }
+
+    @GetMapping("/debug/all")
+    public Map<String, String> getAllKeysWithValues() {
+        return catedraService.getAllKeysWithValues();
     }
 
     @PostMapping("/bloqueo-asientos")
