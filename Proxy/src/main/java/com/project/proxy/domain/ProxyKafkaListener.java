@@ -1,13 +1,10 @@
 package com.project.proxy.domain;
 
-import com.project.proxy.dto.EventoKafkaDTO;
-import com.project.proxy.enumeration.Changes;
 import com.project.proxy.service.BackendNotificationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-import tools.jackson.databind.ObjectMapper;
 
 @Service
 @Slf4j

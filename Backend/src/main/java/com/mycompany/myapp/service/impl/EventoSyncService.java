@@ -62,7 +62,7 @@ public class EventoSyncService {
             evento.setId(eventoDTO.getId()); //Fijarse de agregar el setCatedraId si es necesario
             evento.setTitulo(eventoDTO.getTitulo());
             evento.setDescripcion(eventoDTO.getDescripcion());
-            evento.setFecha(eventoDTO.getFecha().toLocalDate());
+            evento.setFecha(eventoDTO.getFecha());
             evento.setFilaAsientos(eventoDTO.getFilaAsientos());
             evento.setColumnaAsientos(eventoDTO.getColumnAsientos());
             evento.setPrecioEntrada(eventoDTO.getPrecioEntrada());

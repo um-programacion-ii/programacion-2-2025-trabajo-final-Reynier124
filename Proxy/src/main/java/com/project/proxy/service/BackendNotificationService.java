@@ -1,15 +1,11 @@
 package com.project.proxy.service;
 
 import com.project.proxy.client.BackendClient;
-import com.project.proxy.dto.EventoKafkaDTO;
-import com.project.proxy.dto.NotificationStats;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;

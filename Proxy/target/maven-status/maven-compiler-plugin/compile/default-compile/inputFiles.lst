@@ -20,7 +20,6 @@
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/BloqueoAsientosRequest.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/BloqueoAsientosResponse.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/ConseguirEventosResponse.java
-/home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/EventoKafkaDTO.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/EventoResponse.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/EventoResumidoResponse.java
 /home/reynier/Documentos/Programacion-2/Trabajo_final/programacion-2-2025-trabajo-final-Reynier124/Proxy/src/main/java/com/project/proxy/dto/EventoTipo.java

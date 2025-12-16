@@ -20,12 +20,12 @@ src/main/java/com/mycompany/myapp/config/RedisConfig.java 2025-12-15T13:04:56.79
 src/main/java/com/mycompany/myapp/config/SecurityConfiguration.java 2025-12-15T14:06:19.767141878Z
 src/main/java/com/mycompany/myapp/config/SecurityJwtConfiguration.java 2025-11-26T21:18:00.446636768Z
 src/main/java/com/mycompany/myapp/config/WebConfigurer.java 2025-11-26T21:18:00.446636768Z
-src/main/java/com/mycompany/myapp/config/filters/SessionFilterRedis.java 2025-12-13T23:03:57.037200819Z
+src/main/java/com/mycompany/myapp/config/filters/SessionFilterRedis.java 2025-12-15T20:25:31.690904425Z
 src/main/java/com/mycompany/myapp/config/package-info.java 2025-11-26T21:18:00.446636768Z
 src/main/java/com/mycompany/myapp/domain/AbstractAuditingEntity.java 2025-11-26T21:18:00.446636768Z
 src/main/java/com/mycompany/myapp/domain/Asientos.java 2025-11-26T21:18:00.446636768Z
 src/main/java/com/mycompany/myapp/domain/Authority.java 2025-11-26T21:18:00.446636768Z
-src/main/java/com/mycompany/myapp/domain/Evento.java 2025-11-26T21:18:00.446636768Z
+src/main/java/com/mycompany/myapp/domain/Evento.java 2025-12-15T18:26:23.366101270Z
 src/main/java/com/mycompany/myapp/domain/Integrantes.java 2025-11-26T21:18:00.446636768Z
 src/main/java/com/mycompany/myapp/domain/Sesion.java 2025-11-26T21:18:00.446636768Z
 src/main/java/com/mycompany/myapp/domain/User.java 2025-11-26T21:18:00.447636772Z
@@ -38,7 +38,7 @@ src/main/java/com/mycompany/myapp/management/package-info.java 2025-11-26T21:18:
 src/main/java/com/mycompany/myapp/package-info.java 2025-11-26T21:18:00.447636772Z
 src/main/java/com/mycompany/myapp/repository/AsientosRepository.java 2025-11-26T21:18:00.447636772Z
 src/main/java/com/mycompany/myapp/repository/AuthorityRepository.java 2025-11-26T21:18:00.447636772Z
-src/main/java/com/mycompany/myapp/repository/EventoRepository.java 2025-12-15T12:56:03.807699750Z
+src/main/java/com/mycompany/myapp/repository/EventoRepository.java 2025-12-15T18:32:15.102452458Z
 src/main/java/com/mycompany/myapp/repository/IntegrantesRepository.java 2025-11-26T21:18:00.447636772Z
 src/main/java/com/mycompany/myapp/repository/SesionRepository.java 2025-11-26T21:18:00.447636772Z
 src/main/java/com/mycompany/myapp/repository/UserRepository.java 2025-11-26T21:18:00.447636772Z
@@ -73,7 +73,7 @@ src/main/java/com/mycompany/myapp/service/dto/AsientosRedisDTO.java 2025-12-14T1
 src/main/java/com/mycompany/myapp/service/dto/AsientosVentasDTO.java 2025-12-13T23:21:58.728895362Z
 src/main/java/com/mycompany/myapp/service/dto/BloqueoAsientosRequest.java 2025-12-13T23:21:58.728895362Z
 src/main/java/com/mycompany/myapp/service/dto/BloqueoAsientosResponse.java 2025-12-13T23:21:58.728895362Z
-src/main/java/com/mycompany/myapp/service/dto/EventoDTO.java 2025-12-13T23:21:58.728895362Z
+src/main/java/com/mycompany/myapp/service/dto/EventoDTO.java 2025-12-15T18:27:38.167752314Z
 src/main/java/com/mycompany/myapp/service/dto/EventoKafkaDTO.java 2025-12-10T20:26:52.111060283Z
 src/main/java/com/mycompany/myapp/service/dto/EventoResumidoDTO.java 2025-12-10T20:26:52.112060284Z
 src/main/java/com/mycompany/myapp/service/dto/EventoTipoDTO.java 2025-12-13T23:21:58.728895362Z
@@ -89,12 +89,12 @@ src/main/java/com/mycompany/myapp/service/dto/VentaAsientosResponse.java 2025-12
 src/main/java/com/mycompany/myapp/service/dto/VentaDTO.java 2025-11-26T21:18:00.448636776Z
 src/main/java/com/mycompany/myapp/service/dto/package-info.java 2025-11-26T21:18:00.448636776Z
 src/main/java/com/mycompany/myapp/service/impl/AsientosServiceImpl.java 2025-11-26T21:18:00.448636776Z
-src/main/java/com/mycompany/myapp/service/impl/EventoServiceImpl.java 2025-12-13T23:21:58.728895362Z
-src/main/java/com/mycompany/myapp/service/impl/EventoSyncService.java 2025-12-15T14:38:56.253299810Z
+src/main/java/com/mycompany/myapp/service/impl/EventoServiceImpl.java 2025-12-15T18:26:20.702076206Z
+src/main/java/com/mycompany/myapp/service/impl/EventoSyncService.java 2025-12-15T18:27:38.175752379Z
 src/main/java/com/mycompany/myapp/service/impl/IntegrantesServiceImpl.java 2025-11-26T21:18:00.448636776Z
 src/main/java/com/mycompany/myapp/service/impl/RedisSesionService.java 2025-12-13T23:03:57.037200819Z
-src/main/java/com/mycompany/myapp/service/impl/SesionServiceImpl.java 2025-12-13T23:03:57.038200817Z
-src/main/java/com/mycompany/myapp/service/impl/UsuarioServiceImpl.java 2025-12-05T12:21:51.103014754Z
+src/main/java/com/mycompany/myapp/service/impl/SesionServiceImpl.java 2025-12-16T08:49:28.684154322Z
+src/main/java/com/mycompany/myapp/service/impl/UsuarioServiceImpl.java 2025-12-15T18:26:19.594065741Z
 src/main/java/com/mycompany/myapp/service/impl/VentaServiceImpl.java 2025-11-26T21:18:00.449636780Z
 src/main/java/com/mycompany/myapp/service/impl/package-info.java 2025-11-26T21:18:00.449636780Z
 src/main/java/com/mycompany/myapp/service/mapper/AsientosMapper.java 2025-11-26T21:18:00.449636780Z
@@ -112,7 +112,7 @@ src/main/java/com/mycompany/myapp/web/rest/AsientosResource.java 2025-11-26T21:1
 src/main/java/com/mycompany/myapp/web/rest/AuthenticateController.java 2025-12-13T23:03:57.038200817Z
 src/main/java/com/mycompany/myapp/web/rest/AuthorityResource.java 2025-11-26T21:18:00.449636780Z
 src/main/java/com/mycompany/myapp/web/rest/CatedraController.java 2025-12-14T11:58:50.528248355Z
-src/main/java/com/mycompany/myapp/web/rest/EventoResource.java 2025-12-15T13:02:45.585229599Z
+src/main/java/com/mycompany/myapp/web/rest/EventoResource.java 2025-12-15T18:26:20.191071383Z
 src/main/java/com/mycompany/myapp/web/rest/IntegrantesResource.java 2025-11-26T21:18:00.449636780Z
 src/main/java/com/mycompany/myapp/web/rest/NotificationController.java 2025-12-14T14:33:47.557272855Z
 src/main/java/com/mycompany/myapp/web/rest/PublicUserResource.java 2025-11-26T21:18:00.449636780Z
@@ -200,7 +200,7 @@ src/test/java/com/mycompany/myapp/web/rest/AccountResourceIT.java 2025-11-26T21:
 src/test/java/com/mycompany/myapp/web/rest/AsientosResourceIT.java 2025-11-26T21:18:00.454636802Z
 src/test/java/com/mycompany/myapp/web/rest/AuthenticateControllerIT.java 2025-11-26T21:18:00.454636802Z
 src/test/java/com/mycompany/myapp/web/rest/AuthorityResourceIT.java 2025-11-26T21:18:00.454636802Z
-src/test/java/com/mycompany/myapp/web/rest/EventoResourceIT.java 2025-11-26T21:18:00.454636802Z
+src/test/java/com/mycompany/myapp/web/rest/EventoResourceIT.java 2025-12-15T18:26:18.951059660Z
 src/test/java/com/mycompany/myapp/web/rest/IntegrantesResourceIT.java 2025-11-26T21:18:00.454636802Z
 src/test/java/com/mycompany/myapp/web/rest/PublicUserResourceIT.java 2025-11-26T21:18:00.454636802Z
 src/test/java/com/mycompany/myapp/web/rest/SesionResourceIT.java 2025-11-26T21:18:00.454636802Z

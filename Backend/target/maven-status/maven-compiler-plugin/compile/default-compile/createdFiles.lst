@@ -3,7 +3,6 @@ com/mycompany/myapp/config/JacksonConfiguration$1.class
 com/mycompany/myapp/config/RedisConfig.class
 com/mycompany/myapp/config/CacheConfiguration.class
 com/mycompany/myapp/service/mapper/package-info.class
-com/mycompany/myapp/enumeration/Changes.class
 com/mycompany/myapp/config/DatabaseConfiguration.class
 com/mycompany/myapp/web/rest/vm/package-info.class
 com/mycompany/myapp/package-info.class
@@ -31,5 +30,6 @@ com/mycompany/myapp/config/Constants.class
 com/mycompany/myapp/security/JwtUtils.class
 com/mycompany/myapp/config/DateTimeFormatConfiguration.class
 com/mycompany/myapp/config/CRLFLogConverter.class
+com/mycompany/myapp/config/SecurityConfiguration.class
 com/mycompany/myapp/service/impl/package-info.class
 com/mycompany/myapp/config/LoggingConfiguration.class
