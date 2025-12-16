@@ -9,6 +9,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
+import org.example.project.dto.EventoResumidoResponse
 import org.example.project.dto.LoginRequest
 import org.example.project.dto.LoginResponse
 import org.example.project.dto.RegisterRequest
@@ -40,6 +41,18 @@ object ApiClient {
             }.body()
 
         return response.jwt
+    }
+
+    suspend fun getEventsResumido(): List<EventoResumidoResponse>{
+        return client.get("http://localhost:8081/api/v1/service/eventos-resumidos").body()
+    }
+
+    suspend fun getEvents(): List<EventoResumidoResponse>{
+        return client.get("http://localhost:8081/api/v1/service/eventos").body()
+    }
+
+    suspend fun getEventById(id: Long): EventoResumidoResponse {
+        return client.get("http://localhost:8081/api/v1/service/eventos/$id").body()
     }
 
 }
