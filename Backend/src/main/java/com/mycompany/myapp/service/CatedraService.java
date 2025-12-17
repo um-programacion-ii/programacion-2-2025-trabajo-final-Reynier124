@@ -76,4 +76,6 @@ public class CatedraService {
     public VentaAsientosResponse listarVentaPorId(Long id) {
         return proxyClient.listarVentaPorId(id);
     }
+
+
 }

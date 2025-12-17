@@ -9,6 +9,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
+import org.example.project.dto.EventoResponse
 import org.example.project.dto.EventoResumidoResponse
 import org.example.project.dto.LoginRequest
 import org.example.project.dto.LoginResponse
@@ -27,7 +28,7 @@ object ApiClient {
     }
 
     suspend fun register(request: RegisterRequest): HttpResponse {
-        return client.post("http://localhost:8081/api/register"){
+        return client.post("http://10.0.2.2:8081/api/register"){
             contentType(ContentType.Application.Json)
             setBody(request)
         }
@@ -35,8 +36,8 @@ object ApiClient {
 
     suspend fun login(request: LoginRequest): String {
         val response: LoginResponse =
-            client.post("http://localhost:8081/api/authenticate") {
-                contentType(io.ktor.http.ContentType.Application.Json)
+            client.post("http://10.0.2.2:8081/api/authenticate") {
+                contentType(ContentType.Application.Json)
                 setBody(request)
             }.body()
 
@@ -47,11 +48,11 @@ object ApiClient {
         return client.get("http://localhost:8081/api/v1/service/eventos-resumidos").body()
     }
 
-    suspend fun getEvents(): List<EventoResumidoResponse>{
+    suspend fun getEvents(): List<EventoResponse>{
         return client.get("http://localhost:8081/api/v1/service/eventos").body()
     }
 
-    suspend fun getEventById(id: Long): EventoResumidoResponse {
+    suspend fun getEventById(id: Long): EventoResponse {
         return client.get("http://localhost:8081/api/v1/service/eventos/$id").body()
     }
 

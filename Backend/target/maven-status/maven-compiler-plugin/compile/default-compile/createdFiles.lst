@@ -6,6 +6,7 @@ com/mycompany/myapp/service/mapper/package-info.class
 com/mycompany/myapp/config/DatabaseConfiguration.class
 com/mycompany/myapp/web/rest/vm/package-info.class
 com/mycompany/myapp/package-info.class
+com/mycompany/myapp/service/dto/AsientosDisponiblesDTO.class
 com/mycompany/myapp/service/dto/package-info.class
 com/mycompany/myapp/domain/package-info.class
 com/mycompany/myapp/web/rest/package-info.class
@@ -18,6 +19,7 @@ com/mycompany/myapp/aop/logging/LoggingAspect.class
 com/mycompany/myapp/config/JacksonConfiguration.class
 com/mycompany/myapp/config/LoggingAspectConfiguration.class
 com/mycompany/myapp/aop/logging/package-info.class
+com/mycompany/myapp/service/impl/DisponibilidadAsientosService.class
 com/mycompany/myapp/ApplicationWebXml.class
 com/mycompany/myapp/config/AsyncConfiguration.class
 com/mycompany/myapp/config/ApplicationProperties.class

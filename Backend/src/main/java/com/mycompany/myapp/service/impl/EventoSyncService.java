@@ -99,4 +99,6 @@ public class EventoSyncService {
             log.error("Error marcando eventos eliminados: {}", e.getMessage());
         }
     }
+
+
 }

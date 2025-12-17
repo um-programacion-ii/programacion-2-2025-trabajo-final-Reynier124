@@ -27,10 +27,11 @@ fun AuthScreen() {
                 text = { Text("Registro") }
             )
         }
-
+        /*
         when (selectedTab) {
             0 -> LoginScreen()
             1 -> RegisterScreen()
         }
+         */
     }
 }

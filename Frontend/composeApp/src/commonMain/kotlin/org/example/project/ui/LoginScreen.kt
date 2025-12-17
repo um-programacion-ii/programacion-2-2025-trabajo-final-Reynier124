@@ -13,6 +13,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,20 +23,38 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import org.example.project.navigation.Screen
 import org.example.project.viewmodel.LoginUiState
 
 @Composable
-fun LoginScreen(viewModel: LoginViewModel = LoginViewModel()) {
+fun LoginScreen(
+    viewModel: LoginViewModel = LoginViewModel(),
+    onLoginSuccess: () -> Unit
+) {
 
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var currentScreen by remember { mutableStateOf<Screen>(Screen.Login) }
+
+    LoginScreen(
+        onLoginSuccess = {
+            currentScreen = Screen.EventList
+        }
+    )
 
     val state by viewModel.uiState.collectAsState()
 
-    Column(modifier = Modifier
-        .padding(16.dp)
-        .safeContentPadding()
-        .fillMaxSize(),
+    LaunchedEffect(state) {
+        if (state is LoginUiState.Success) {
+            onLoginSuccess()
+        }
+    }
+
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .safeContentPadding()
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -66,9 +85,6 @@ fun LoginScreen(viewModel: LoginViewModel = LoginViewModel()) {
         when (state) {
             is LoginUiState.Loading ->
                 CircularProgressIndicator()
-
-            is LoginUiState.Success ->
-                Text("Login correcto ✅")
 
             is LoginUiState.Error ->
                 Text(

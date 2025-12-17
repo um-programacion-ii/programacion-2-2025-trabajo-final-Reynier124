@@ -1,9 +1,11 @@
 package com.mycompany.myapp.service.mapper;
 
 import com.mycompany.myapp.domain.Asientos;
+import com.mycompany.myapp.domain.Evento;
 import com.mycompany.myapp.domain.Sesion;
 import com.mycompany.myapp.domain.Venta;
 import com.mycompany.myapp.service.dto.AsientosDTO;
+import com.mycompany.myapp.service.dto.EventoDTO;
 import com.mycompany.myapp.service.dto.SesionDTO;
 import com.mycompany.myapp.service.dto.VentaDTO;
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-16T08:15:08-0300",
+    date = "2025-12-16T19:22:18-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.6 (Amazon.com Inc.)"
 )
 @Component
@@ -32,6 +34,7 @@ public class AsientosMapperImpl implements AsientosMapper {
         asientos.setColumna( dto.getColumna() );
         asientos.setPersona( dto.getPersona() );
         asientos.setEstado( dto.getEstado() );
+        asientos.evento( eventoDTOToEvento( dto.getEvento() ) );
         asientos.venta( ventaDTOToVenta( dto.getVenta() ) );
         asientos.sesion( sesionDTOToSesion( dto.getSesion() ) );
 
@@ -87,6 +90,12 @@ public class AsientosMapperImpl implements AsientosMapper {
         if ( dto.getEstado() != null ) {
             entity.setEstado( dto.getEstado() );
         }
+        if ( dto.getEvento() != null ) {
+            if ( entity.getEvento() == null ) {
+                entity.evento( new Evento() );
+            }
+            eventoDTOToEvento1( dto.getEvento(), entity.getEvento() );
+        }
         if ( dto.getVenta() != null ) {
             if ( entity.getVenta() == null ) {
                 entity.venta( new Venta() );
@@ -109,6 +118,7 @@ public class AsientosMapperImpl implements AsientosMapper {
 
         AsientosDTO asientosDTO = new AsientosDTO();
 
+        asientosDTO.setEvento( toDtoEventoId( s.getEvento() ) );
         asientosDTO.setVenta( toDtoVentaId( s.getVenta() ) );
         asientosDTO.setSesion( toDtoSesionId( s.getSesion() ) );
         asientosDTO.setId( s.getId() );
@@ -118,6 +128,19 @@ public class AsientosMapperImpl implements AsientosMapper {
         asientosDTO.setEstado( s.getEstado() );
 
         return asientosDTO;
+    }
+
+    @Override
+    public EventoDTO toDtoEventoId(Evento evento) {
+        if ( evento == null ) {
+            return null;
+        }
+
+        EventoDTO eventoDTO = new EventoDTO();
+
+        eventoDTO.setId( evento.getId() );
+
+        return eventoDTO;
     }
 
     @Override
@@ -144,6 +167,30 @@ public class AsientosMapperImpl implements AsientosMapper {
         sesionDTO.setId( sesion.getId() );
 
         return sesionDTO;
+    }
+
+    protected Evento eventoDTOToEvento(EventoDTO eventoDTO) {
+        if ( eventoDTO == null ) {
+            return null;
+        }
+
+        Evento evento = new Evento();
+
+        evento.setId( eventoDTO.getId() );
+        evento.setTitulo( eventoDTO.getTitulo() );
+        evento.setResumen( eventoDTO.getResumen() );
+        evento.setDescripcion( eventoDTO.getDescripcion() );
+        evento.setFecha( eventoDTO.getFecha() );
+        evento.setDireccion( eventoDTO.getDireccion() );
+        evento.setImagen( eventoDTO.getImagen() );
+        evento.setFilaAsientos( eventoDTO.getFilaAsientos() );
+        evento.setPrecioEntrada( eventoDTO.getPrecioEntrada() );
+        evento.setEventoTipoNombre( eventoDTO.getEventoTipoNombre() );
+        evento.setEventoTipoDescripcion( eventoDTO.getEventoTipoDescripcion() );
+        evento.setEstado( eventoDTO.getEstado() );
+        evento.setUltimaActualizacion( eventoDTO.getUltimaActualizacion() );
+
+        return evento;
     }
 
     protected Venta ventaDTOToVenta(VentaDTO ventaDTO) {
@@ -181,6 +228,52 @@ public class AsientosMapperImpl implements AsientosMapper {
         sesion.setExpiraEn( sesionDTO.getExpiraEn() );
 
         return sesion;
+    }
+
+    protected void eventoDTOToEvento1(EventoDTO eventoDTO, Evento mappingTarget) {
+        if ( eventoDTO == null ) {
+            return;
+        }
+
+        if ( eventoDTO.getId() != null ) {
+            mappingTarget.setId( eventoDTO.getId() );
+        }
+        if ( eventoDTO.getTitulo() != null ) {
+            mappingTarget.setTitulo( eventoDTO.getTitulo() );
+        }
+        if ( eventoDTO.getResumen() != null ) {
+            mappingTarget.setResumen( eventoDTO.getResumen() );
+        }
+        if ( eventoDTO.getDescripcion() != null ) {
+            mappingTarget.setDescripcion( eventoDTO.getDescripcion() );
+        }
+        if ( eventoDTO.getFecha() != null ) {
+            mappingTarget.setFecha( eventoDTO.getFecha() );
+        }
+        if ( eventoDTO.getDireccion() != null ) {
+            mappingTarget.setDireccion( eventoDTO.getDireccion() );
+        }
+        if ( eventoDTO.getImagen() != null ) {
+            mappingTarget.setImagen( eventoDTO.getImagen() );
+        }
+        if ( eventoDTO.getFilaAsientos() != null ) {
+            mappingTarget.setFilaAsientos( eventoDTO.getFilaAsientos() );
+        }
+        if ( eventoDTO.getPrecioEntrada() != null ) {
+            mappingTarget.setPrecioEntrada( eventoDTO.getPrecioEntrada() );
+        }
+        if ( eventoDTO.getEventoTipoNombre() != null ) {
+            mappingTarget.setEventoTipoNombre( eventoDTO.getEventoTipoNombre() );
+        }
+        if ( eventoDTO.getEventoTipoDescripcion() != null ) {
+            mappingTarget.setEventoTipoDescripcion( eventoDTO.getEventoTipoDescripcion() );
+        }
+        if ( eventoDTO.getEstado() != null ) {
+            mappingTarget.setEstado( eventoDTO.getEstado() );
+        }
+        if ( eventoDTO.getUltimaActualizacion() != null ) {
+            mappingTarget.setUltimaActualizacion( eventoDTO.getUltimaActualizacion() );
+        }
     }
 
     protected void ventaDTOToVenta1(VentaDTO ventaDTO, Venta mappingTarget) {

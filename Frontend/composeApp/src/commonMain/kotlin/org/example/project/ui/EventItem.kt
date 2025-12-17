@@ -10,9 +10,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.example.project.dto.EventoResponse
 
 @Composable
-fun EventItem(event: Event, onClick: () -> Unit) {
+fun EventItem(event: EventoResponse, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()

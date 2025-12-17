@@ -2,6 +2,7 @@ package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.service.CatedraService;
 import com.mycompany.myapp.service.dto.*;
+import com.mycompany.myapp.service.impl.DisponibilidadAsientosService;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +15,11 @@ import java.util.Set;
 @PermitAll
 public class CatedraController {
     private final CatedraService catedraService;
+    private final DisponibilidadAsientosService disponibilidadAsientosService;
 
-    public CatedraController(CatedraService catedraService) {
+    public CatedraController(CatedraService catedraService, DisponibilidadAsientosService disponibilidadAsientosService) {
         this.catedraService = catedraService;
+        this.disponibilidadAsientosService = disponibilidadAsientosService;
     }
 
     @PostMapping("/registrar")
@@ -90,5 +93,12 @@ public class CatedraController {
     @GetMapping("/listar-ventas/{id}")
     public VentaAsientosResponse listarVentaPorId(@PathVariable Long id) {
         return catedraService.listarVentaPorId(id);
+    }
+
+    @GetMapping("/asientos/evento/{eventoId}/disponibles")
+    public List<AsientosDisponiblesDTO> getAsientosDisponibles(
+        @PathVariable Long eventoId
+    ) {
+        return disponibilidadAsientosService.obtenerAsientosDisponibles(eventoId);
     }
 }

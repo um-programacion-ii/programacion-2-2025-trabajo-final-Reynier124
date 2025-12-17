@@ -90,7 +90,6 @@ public class SesionServiceImpl implements SesionService {
         LOG.debug("Request to delete Sesion : {}", id);
         sesionRepository.deleteById(id);
     }
-
     public Sesion crearSesion(Long usuarioId) {
         Sesion sesion = new Sesion();
         sesion.setToken(UUID.randomUUID().toString());
