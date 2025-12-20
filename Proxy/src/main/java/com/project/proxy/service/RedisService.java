@@ -1,6 +1,7 @@
 package com.project.proxy.service;
 
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.project.proxy.dto.AsientosCompletoDTO;
 import com.project.proxy.dto.AsientosRedisDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,12 +65,16 @@ public class RedisService {
      * @param eventoId ID del evento
      * @return Lista de identificadores de asientos no disponibles
      */
-    public List<String> getAsientosNoDisponibles(Long eventoId) {
+    public List<AsientosCompletoDTO> getAsientosNoDisponibles(Long eventoId) {
         AsientosRedisDTO datos = getAsientosEvento(eventoId);
 
         return datos.getAsientos().stream()
                 .filter(asiento -> asiento.esVendido() || asiento.esBloqueadoValido())
-                .map(AsientosRedisDTO.AsientoRedis::getIdentificador)
+                .map(asiento -> new AsientosCompletoDTO(
+                        asiento.esVendido() ? "VENDIDO" : "BLOQUEADO",
+                        asiento.getFila(),
+                        asiento.getColumna()
+                ))
                 .collect(Collectors.toList());
     }
 

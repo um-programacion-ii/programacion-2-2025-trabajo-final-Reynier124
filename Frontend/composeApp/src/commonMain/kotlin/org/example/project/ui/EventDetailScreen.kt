@@ -10,35 +10,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import org.example.project.content.EventDetailScreenContent
 import org.example.project.dto.EventoResponse
 
-@Composable
-fun EventDetailScreen(
-    event: EventoResponse,
-    onBack: () -> Unit
-) {
-    Column(modifier = Modifier.padding(16.dp)) {
+data class EventDetailScreen(val eventId: Long) : Screen {
+    @Composable
+    override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
 
-        Text(
-            text = event.titulo,
-            style = MaterialTheme.typography.headlineMedium
+        EventDetailScreenContent(
+            eventId = eventId,
+            onBack = { navigator.pop() }
         )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Text(
-            text = event.fecha,
-            style = MaterialTheme.typography.bodySmall
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(event.descripcion)
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Button(onClick = onBack) {
-            Text("Volver")
-        }
     }
 }

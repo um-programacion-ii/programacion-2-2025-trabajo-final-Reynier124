@@ -1,5 +1,6 @@
 package com.project.proxy.controller;
 
+import com.project.proxy.dto.AsientosCompletoDTO;
 import com.project.proxy.dto.AsientosRedisDTO;
 import com.project.proxy.service.RedisService;
 import lombok.extern.slf4j.Slf4j;
@@ -33,9 +34,9 @@ public class AsientosController {
      * Obtiene lista de identificadores de asientos NO disponibles
      */
     @GetMapping("/evento/{eventoId}/no-disponibles")
-    public ResponseEntity<List<String>> getAsientosNoDisponibles(@PathVariable Long eventoId) {
+    public ResponseEntity<List<AsientosCompletoDTO>> getAsientosNoDisponibles(@PathVariable Long eventoId) {
         log.info("Consultando asientos no disponibles para evento {}", eventoId);
-        List<String> noDisponibles = redisService.getAsientosNoDisponibles(eventoId);
+        List<AsientosCompletoDTO> noDisponibles = redisService.getAsientosNoDisponibles(eventoId);
         return ResponseEntity.ok(noDisponibles);
     }
 

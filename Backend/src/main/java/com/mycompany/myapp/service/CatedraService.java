@@ -41,7 +41,7 @@ public class CatedraService {
         return proxyClient.getAsientosEvento(eventoId);
     }
 
-    public List<String> getAsientosNoDisponibles(Long eventoId) {
+    public List<AsientosProxyCompletosDTO> getAsientosNoDisponibles(Long eventoId) {
         return proxyClient.getAsientosNoDisponibles(eventoId);
     }
 

@@ -1,33 +1,20 @@
 package org.example.project.ui
 
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
-import org.example.project.dto.EventoResponse
-import org.example.project.viewmodel.EventViewModel
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import org.example.project.content.EventListScreenContent
 
-@Composable
-fun EventListScreen(
-    onEventClick: (Long) -> Unit
-) {
-    val viewModel = remember { EventViewModel() }
+class EventListScreen : Screen {
+    @Composable
+    override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
 
-    LaunchedEffect(Unit) {
-        viewModel.loadEvents()
-    }
-
-    if (viewModel.loading) {
-        CircularProgressIndicator()
-    } else {
-        LazyColumn {
-            items(viewModel.events) { event ->
-                EventItem(event) {
-                    onEventClick(event.id)
-                }
+        EventListScreenContent(
+            onEventClick = { eventId ->
+                navigator.push(EventDetailScreen(eventId))
             }
-        }
+        )
     }
 }
