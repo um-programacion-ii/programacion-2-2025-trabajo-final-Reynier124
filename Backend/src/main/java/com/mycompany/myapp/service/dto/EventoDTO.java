@@ -5,8 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Objects;
 
 /**
@@ -26,7 +25,7 @@ public class EventoDTO implements Serializable {
 
     private String descripcion;
 
-    private LocalDateTime fecha;
+    private Instant fecha;
 
     private String direccion;
 
@@ -40,11 +39,13 @@ public class EventoDTO implements Serializable {
 
     private EventoTipoDTO eventoTipo;
 
+    private String eventoTipoNombre;
+
+    private String eventoTipoDescripcion;
+
     private String estado;
 
-    private LocalDate ultimaActualizacion;
-
-
+    private Instant ultimaActualizacion;
 
 
     @Override
@@ -82,7 +83,8 @@ public class EventoDTO implements Serializable {
             ", filaAsientos=" + getFilaAsientos() +
             ", columnaAsientos=" + getColumnAsientos() +
             ", precioEntrada=" + getPrecioEntrada() +
-            ", eventoTipoNombre='" + getEventoTipo() + "'" +
+            ", eventoTipoNombre='" + getEventoTipo().getEventoTipoNombre() + "'" +
+            ", eventoTipoDescripcion='" + getEventoTipo().getEventoTipoDescripcion() + "'" +
             ", estado='" + getEstado() + "'" +
             ", ultimaActualizacion='" + getUltimaActualizacion() + "'" +
             "}";

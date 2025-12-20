@@ -29,7 +29,15 @@ public class SessionFilterRedis extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return request.getRequestURI().equals("/api/authenticate");
+        String path = request.getServletPath();
+
+        return path.startsWith("/api/authenticate")
+            || path.startsWith("/api/internal/")
+            || path.startsWith("/h2-console")
+            || path.startsWith("/actuator/")
+            || path.startsWith("/swagger")
+            || path.startsWith("/v3/api-docs")
+            || path.startsWith("/error");
     }
 
     @Override

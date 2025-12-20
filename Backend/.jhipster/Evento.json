@@ -18,7 +18,7 @@
     },
     {
       "fieldName": "fecha",
-      "fieldType": "LocalDate"
+      "fieldType": "Instant"
     },
     {
       "fieldName": "direccion",
@@ -54,7 +54,7 @@
     },
     {
       "fieldName": "ultimaActualizacion",
-      "fieldType": "LocalDate"
+      "fieldType": "Instant"
     }
   ],
   "jpaMetamodelFiltering": false,
@@ -67,6 +67,14 @@
       "otherEntityName": "integrantes",
       "otherEntityRelationshipName": "evento",
       "relationshipName": "integrantes",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "asientos",
+      "otherEntityRelationshipName": "evento",
+      "relationshipName": "asientos",
       "relationshipSide": "left",
       "relationshipType": "one-to-many"
     }

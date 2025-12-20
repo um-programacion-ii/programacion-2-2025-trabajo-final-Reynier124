@@ -32,12 +32,12 @@ public class SesionServiceImpl implements SesionService {
 
     private final SesionMapper sesionMapper;
 
-    private final RedisSesionService redisSesionService;
+    @Autowired
+    private RedisSesionService redisSesionService;
 
-    public SesionServiceImpl(SesionRepository sesionRepository, SesionMapper sesionMapper, RedisSesionService redisSesionService) {
+    public SesionServiceImpl(SesionRepository sesionRepository, SesionMapper sesionMapper) {
         this.sesionRepository = sesionRepository;
         this.sesionMapper = sesionMapper;
-        this.redisSesionService = redisSesionService;
     }
 
     @Override
@@ -90,7 +90,6 @@ public class SesionServiceImpl implements SesionService {
         LOG.debug("Request to delete Sesion : {}", id);
         sesionRepository.deleteById(id);
     }
-
     public Sesion crearSesion(Long usuarioId) {
         Sesion sesion = new Sesion();
         sesion.setToken(UUID.randomUUID().toString());

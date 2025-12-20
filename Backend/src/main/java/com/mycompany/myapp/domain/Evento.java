@@ -3,7 +3,7 @@ package com.mycompany.myapp.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,7 +33,7 @@ public class Evento implements Serializable {
     private String descripcion;
 
     @Column(name = "fecha")
-    private LocalDate fecha;
+    private Instant fecha;
 
     @Column(name = "direccion")
     private String direccion;
@@ -60,11 +60,15 @@ public class Evento implements Serializable {
     private String estado;
 
     @Column(name = "ultima_actualizacion")
-    private LocalDate ultimaActualizacion;
+    private Instant ultimaActualizacion;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "evento")
     @JsonIgnoreProperties(value = { "evento" }, allowSetters = true)
     private Set<Integrantes> integrantes = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "evento")
+    @JsonIgnoreProperties(value = { "evento", "venta", "sesion" }, allowSetters = true)
+    private Set<Asientos> asientos = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -120,16 +124,16 @@ public class Evento implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public LocalDate getFecha() {
+    public Instant getFecha() {
         return this.fecha;
     }
 
-    public Evento fecha(LocalDate fecha) {
+    public Evento fecha(Instant fecha) {
         this.setFecha(fecha);
         return this;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Instant fecha) {
         this.fecha = fecha;
     }
 
@@ -237,16 +241,16 @@ public class Evento implements Serializable {
         this.estado = estado;
     }
 
-    public LocalDate getUltimaActualizacion() {
+    public Instant getUltimaActualizacion() {
         return this.ultimaActualizacion;
     }
 
-    public Evento ultimaActualizacion(LocalDate ultimaActualizacion) {
+    public Evento ultimaActualizacion(Instant ultimaActualizacion) {
         this.setUltimaActualizacion(ultimaActualizacion);
         return this;
     }
 
-    public void setUltimaActualizacion(LocalDate ultimaActualizacion) {
+    public void setUltimaActualizacion(Instant ultimaActualizacion) {
         this.ultimaActualizacion = ultimaActualizacion;
     }
 
@@ -278,6 +282,37 @@ public class Evento implements Serializable {
     public Evento removeIntegrantes(Integrantes integrantes) {
         this.integrantes.remove(integrantes);
         integrantes.setEvento(null);
+        return this;
+    }
+
+    public Set<Asientos> getAsientos() {
+        return this.asientos;
+    }
+
+    public void setAsientos(Set<Asientos> asientos) {
+        if (this.asientos != null) {
+            this.asientos.forEach(i -> i.setEvento(null));
+        }
+        if (asientos != null) {
+            asientos.forEach(i -> i.setEvento(this));
+        }
+        this.asientos = asientos;
+    }
+
+    public Evento asientos(Set<Asientos> asientos) {
+        this.setAsientos(asientos);
+        return this;
+    }
+
+    public Evento addAsientos(Asientos asientos) {
+        this.asientos.add(asientos);
+        asientos.setEvento(this);
+        return this;
+    }
+
+    public Evento removeAsientos(Asientos asientos) {
+        this.asientos.remove(asientos);
+        asientos.setEvento(null);
         return this;
     }
 

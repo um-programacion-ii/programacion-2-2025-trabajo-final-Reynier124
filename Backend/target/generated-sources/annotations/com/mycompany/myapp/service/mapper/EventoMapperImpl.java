@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-13T15:47:47-0300",
+    date = "2025-12-20T18:37:50-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.6 (Amazon.com Inc.)"
 )
 @Component
@@ -27,13 +27,13 @@ public class EventoMapperImpl implements EventoMapper {
         evento.setTitulo( dto.getTitulo() );
         evento.setResumen( dto.getResumen() );
         evento.setDescripcion( dto.getDescripcion() );
-        if ( dto.getFecha() != null ) {
-            evento.setFecha( dto.getFecha().toLocalDate() );
-        }
+        evento.setFecha( dto.getFecha() );
         evento.setDireccion( dto.getDireccion() );
         evento.setImagen( dto.getImagen() );
         evento.setFilaAsientos( dto.getFilaAsientos() );
         evento.setPrecioEntrada( dto.getPrecioEntrada() );
+        evento.setEventoTipoNombre( dto.getEventoTipoNombre() );
+        evento.setEventoTipoDescripcion( dto.getEventoTipoDescripcion() );
         evento.setEstado( dto.getEstado() );
         evento.setUltimaActualizacion( dto.getUltimaActualizacion() );
 
@@ -52,13 +52,13 @@ public class EventoMapperImpl implements EventoMapper {
         eventoDTO.setTitulo( entity.getTitulo() );
         eventoDTO.setResumen( entity.getResumen() );
         eventoDTO.setDescripcion( entity.getDescripcion() );
-        if ( entity.getFecha() != null ) {
-            eventoDTO.setFecha( entity.getFecha().atStartOfDay() );
-        }
+        eventoDTO.setFecha( entity.getFecha() );
         eventoDTO.setDireccion( entity.getDireccion() );
         eventoDTO.setImagen( entity.getImagen() );
         eventoDTO.setFilaAsientos( entity.getFilaAsientos() );
         eventoDTO.setPrecioEntrada( entity.getPrecioEntrada() );
+        eventoDTO.setEventoTipoNombre( entity.getEventoTipoNombre() );
+        eventoDTO.setEventoTipoDescripcion( entity.getEventoTipoDescripcion() );
         eventoDTO.setEstado( entity.getEstado() );
         eventoDTO.setUltimaActualizacion( entity.getUltimaActualizacion() );
 
@@ -112,7 +112,7 @@ public class EventoMapperImpl implements EventoMapper {
             entity.setDescripcion( dto.getDescripcion() );
         }
         if ( dto.getFecha() != null ) {
-            entity.setFecha( dto.getFecha().toLocalDate() );
+            entity.setFecha( dto.getFecha() );
         }
         if ( dto.getDireccion() != null ) {
             entity.setDireccion( dto.getDireccion() );
@@ -125,6 +125,12 @@ public class EventoMapperImpl implements EventoMapper {
         }
         if ( dto.getPrecioEntrada() != null ) {
             entity.setPrecioEntrada( dto.getPrecioEntrada() );
+        }
+        if ( dto.getEventoTipoNombre() != null ) {
+            entity.setEventoTipoNombre( dto.getEventoTipoNombre() );
+        }
+        if ( dto.getEventoTipoDescripcion() != null ) {
+            entity.setEventoTipoDescripcion( dto.getEventoTipoDescripcion() );
         }
         if ( dto.getEstado() != null ) {
             entity.setEstado( dto.getEstado() );

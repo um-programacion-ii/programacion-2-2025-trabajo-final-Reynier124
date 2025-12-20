@@ -14,8 +14,8 @@ import com.mycompany.myapp.repository.EventoRepository;
 import com.mycompany.myapp.service.dto.EventoDTO;
 import com.mycompany.myapp.service.mapper.EventoMapper;
 import jakarta.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import org.junit.jupiter.api.AfterEach;
@@ -45,8 +45,8 @@ class EventoResourceIT {
     private static final String DEFAULT_DESCRIPCION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPCION = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());
+    private static final Instant DEFAULT_FECHA = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_FECHA = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final String DEFAULT_DIRECCION = "AAAAAAAAAA";
     private static final String UPDATED_DIRECCION = "BBBBBBBBBB";
@@ -72,8 +72,8 @@ class EventoResourceIT {
     private static final String DEFAULT_ESTADO = "AAAAAAAAAA";
     private static final String UPDATED_ESTADO = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_ULTIMA_ACTUALIZACION = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_ULTIMA_ACTUALIZACION = LocalDate.now(ZoneId.systemDefault());
+    private static final Instant DEFAULT_ULTIMA_ACTUALIZACION = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_ULTIMA_ACTUALIZACION = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final String ENTITY_API_URL = "/api/eventos";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";

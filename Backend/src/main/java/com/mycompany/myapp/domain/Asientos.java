@@ -33,10 +33,17 @@ public class Asientos implements Serializable {
     private String estado;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "evento_id")
+    @JsonIgnoreProperties(value = { "integrantes", "asientos" }, allowSetters = true)
+    private Evento evento;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "venta_id")
     @JsonIgnoreProperties(value = { "asientos" }, allowSetters = true)
     private Venta venta;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sesion_id")
     @JsonIgnoreProperties(value = { "asientos" }, allowSetters = true)
     private Sesion sesion;
 
@@ -105,6 +112,19 @@ public class Asientos implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Evento getEvento() {
+        return this.evento;
+    }
+
+    public void setEvento(Evento evento) {
+        this.evento = evento;
+    }
+
+    public Asientos evento(Evento evento) {
+        this.setEvento(evento);
+        return this;
     }
 
     public Venta getVenta() {
