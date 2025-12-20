@@ -18,6 +18,7 @@ spring:
     host: 192.168.194.250
     port: 6379
     password: ""
+    database: 0
     timeout: 60000
 
 backend:

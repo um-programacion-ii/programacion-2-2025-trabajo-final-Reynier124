@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class EventoResponse {
     private String titulo;
     private String resumen;
     private String descripcion;
-    private LocalDateTime fecha;
+    private Instant fecha;
     private String direccion;
     private String imagen;
     private Integer filaAsientos;

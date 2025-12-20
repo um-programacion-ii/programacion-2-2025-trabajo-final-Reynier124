@@ -13,17 +13,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import cafe.adriel.voyager.navigator.Navigator
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import frontend.composeapp.generated.resources.Res
 import frontend.composeapp.generated.resources.compose_multiplatform
+import org.example.project.ui.EventDetailScreen
+import org.example.project.ui.EventListScreen
 import org.example.project.ui.LoginScreen
 
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
-        LoginScreen()
-    }
+    Navigator(LoginScreen())
 }

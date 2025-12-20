@@ -12,5 +12,5 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface EventoRepository extends JpaRepository<Evento, Long> {
-    List<Evento> findByEstado(String Activo);
+    List<Evento> findByEstado (String estado);
 }
