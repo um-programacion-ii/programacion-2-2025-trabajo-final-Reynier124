@@ -11,5 +11,4 @@ public class AsientosVentasDTO {
     private Integer fila;
     private Integer columna;
     private String persona;
-    private String estado;
 }

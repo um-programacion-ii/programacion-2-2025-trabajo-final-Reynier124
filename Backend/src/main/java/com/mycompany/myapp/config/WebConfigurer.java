@@ -17,6 +17,8 @@ import tech.jhipster.config.JHipsterConstants;
 import tech.jhipster.config.JHipsterProperties;
 import tech.jhipster.config.h2.H2ConfigurationHelper;
 
+import java.util.Arrays;
+
 /**
  * Configuration of web application with Servlet 3.0 APIs.
  */
@@ -52,6 +54,10 @@ public class WebConfigurer implements ServletContextInitializer {
         CorsConfiguration config = jHipsterProperties.getCors();
         if (!CollectionUtils.isEmpty(config.getAllowedOrigins()) || !CollectionUtils.isEmpty(config.getAllowedOriginPatterns())) {
             LOG.debug("Registering CORS filter");
+            config.setAllowedOriginPatterns(Arrays.asList("*"));
+            config.setAllowedMethods(Arrays.asList("*"));
+            config.setAllowedHeaders(Arrays.asList("*"));
+            config.setAllowCredentials(true);
             source.registerCorsConfiguration("/api/**", config);
             source.registerCorsConfiguration("/management/**", config);
             source.registerCorsConfiguration("/v3/api-docs", config);

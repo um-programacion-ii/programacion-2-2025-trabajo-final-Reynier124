@@ -77,12 +77,12 @@ public class ProxyClient {
             .block();
     }
 
-    public List<String> getAsientosNoDisponibles(Long eventoId){
+    public List<AsientosProxyCompletosDTO> getAsientosNoDisponibles(Long eventoId){
         return proxyWebClient.get()
             .uri("/proxy/asientos/evento/{eventoId}/no-disponibles", eventoId)
             .accept(MediaType.APPLICATION_JSON)
             .retrieve()
-            .bodyToFlux(String.class)
+            .bodyToFlux(AsientosProxyCompletosDTO.class)
             .collectList()
             .block();
     }
