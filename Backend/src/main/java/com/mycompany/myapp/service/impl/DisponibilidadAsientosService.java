@@ -1,63 +1,75 @@
 package com.mycompany.myapp.service.impl;
 
 import com.mycompany.myapp.domain.Asientos;
+import com.mycompany.myapp.domain.Evento;
 import com.mycompany.myapp.repository.AsientosRepository;
+import com.mycompany.myapp.repository.EventoRepository;
 import com.mycompany.myapp.service.CatedraService;
-import com.mycompany.myapp.service.dto.AsientosDisponiblesDTO;
-import com.mycompany.myapp.service.dto.AsientosRedisDTO;
+import com.mycompany.myapp.service.dto.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Set;
+import java.time.Instant;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
 public class DisponibilidadAsientosService {
 
-    private final AsientosRepository asientosRepository;
-    private final CatedraService catedraServices;
+    private final EventoRepository eventoRepository;
+    private final CatedraService catedraService;
 
     public DisponibilidadAsientosService(
-        AsientosRepository asientosRepository,
-        CatedraService catedraServices) {
+        EventoRepository eventoRepository,
+        CatedraService catedraService) {
 
-        this.asientosRepository = asientosRepository;
-        this.catedraServices = catedraServices;
+        this.eventoRepository = eventoRepository;
+        this.catedraService = catedraService;
     }
 
-    public List<AsientosDisponiblesDTO> obtenerAsientosDisponibles(Long eventoId) {
+    public MapaAsientosDTO obtenerMapaAsientos(Long eventoId) {
 
-        // 1. Todos los asientos del evento (BD)
-        List<Asientos> asientosBD =
-            asientosRepository.findByEventoId(eventoId);
+        Evento evento = eventoRepository.findById(eventoId)
+            .orElseThrow(() -> new IllegalArgumentException("Evento inexistente"));
 
-        // 2. Asientos NO disponibles (Redis externo)
-        AsientosRedisDTO redisDTO =
-            catedraServices.getAsientos(eventoId);
+        // Redis
+        AsientosRedisDTO redisDTO = catedraService.getAsientos(eventoId);
 
-        Set<String> noDisponibles = redisDTO.getAsientos().stream()
-            .filter(a ->
-                "Bloqueado".equalsIgnoreCase(a.getEstado()) ||
-                    "Vendido".equalsIgnoreCase(a.getEstado())
-            )
-            .map(a -> a.getFila() + "-" + a.getColumna())
-            .collect(Collectors.toSet());
+        Map<String, String> estadoPorPosicion = new HashMap<>();
 
-        // 3. Filtrar disponibles
-        return asientosBD.stream()
-            .filter(a ->
-                !noDisponibles.contains(
-                    a.getFila() + "-" + a.getColumna()
-                )
-            )
-            .map(a ->
-                new AsientosDisponiblesDTO(
-                    a.getFila(),
-                    a.getColumna()
-                )
-            )
-            .toList();
+        for (AsientosRedisDTO.AsientoRedis a : redisDTO.getAsientos()) {
+            String key = a.getFila() + "-" + a.getColumna();
+
+            if ("Vendido".equalsIgnoreCase(a.getEstado())) {
+                estadoPorPosicion.put(key, "VENDIDO");
+            }
+            else if (a.esBloqueadoValido()) {
+                estadoPorPosicion.put(key, "BLOQUEADO");
+            }
+        }
+
+        List<FilaAsientosDTO> filas = new ArrayList<>();
+
+        for (int f = 1; f <= evento.getFilaAsientos(); f++) {
+            List<AsientoEstadoDTO> columnas = new ArrayList<>();
+
+            for (int c = 1; c <= evento.getColumnaAsientos(); c++) {
+                String key = f + "-" + c;
+                String estado = estadoPorPosicion.getOrDefault(key, "DISPONIBLE");
+
+                columnas.add(new AsientoEstadoDTO(c, estado));
+            }
+
+            filas.add(new FilaAsientosDTO(f, columnas));
+        }
+
+        return new MapaAsientosDTO(
+            eventoId,
+            evento.getFilaAsientos(),
+            evento.getColumnaAsientos(),
+            filas
+        );
     }
+
 }

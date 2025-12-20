@@ -96,9 +96,9 @@ public class CatedraController {
     }
 
     @GetMapping("/asientos/evento/{eventoId}/disponibles")
-    public List<AsientosDisponiblesDTO> getAsientosDisponibles(
+    public MapaAsientosDTO getAsientosDisponibles(
         @PathVariable Long eventoId
     ) {
-        return disponibilidadAsientosService.obtenerAsientosDisponibles(eventoId);
+        return disponibilidadAsientosService.obtenerMapaAsientos(eventoId);
     }
 }

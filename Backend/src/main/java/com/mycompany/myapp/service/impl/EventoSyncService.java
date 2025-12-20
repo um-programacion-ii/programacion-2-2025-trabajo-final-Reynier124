@@ -25,8 +25,6 @@ public class EventoSyncService {
     private ProxyClient proxyClient;
     @Autowired
     private EventoRepository eventoRepository;
-    @Autowired
-    private AsientosRepository asientosRepository;
 
     /**
      * Sincroniza todos los eventos desde la cátedra
@@ -77,53 +75,7 @@ public class EventoSyncService {
 
         eventoRepository.save(evento);
 
-        // 🔥 SIEMPRE recalcular asientos
-        sincronizarAsientos(evento);
-
         log.debug("Evento {} sincronizado con asientos", evento.getTitulo());
-    }
-
-    private void sincronizarAsientos(Evento evento) {
-
-        int filas = evento.getFilaAsientos();
-        int columnas = evento.getColumnaAsientos();
-
-        // Asientos ocupados desde Redis
-        List<AsientosProxyCompletosDTO> ocupados =
-            proxyClient.getAsientosNoDisponibles(evento.getId());
-
-        Map<String, String> estadoPorPosicion = new HashMap<>();
-        for (AsientosProxyCompletosDTO dto : ocupados) {
-            String key = dto.getFila().toString() + "-" + dto.getColumna().toString();
-            estadoPorPosicion.put(key, dto.getEstado());
-        }
-
-        // Eliminar asientos viejos del evento
-        asientosRepository.deleteByEventoId(evento.getId());
-
-        List<Asientos> nuevos = new ArrayList<>();
-
-        // Generar todos los asientos
-        for (int f = 1; f <= filas; f++) {
-            for (int c = 1; c <= columnas; c++) {
-
-                String key = f + "-" + c;
-                String estado = estadoPorPosicion.getOrDefault(key, "DISPONIBLE");
-
-                Asientos asiento = new Asientos();
-                asiento.setFila(f);
-                asiento.setColumna(c);
-                asiento.setEstado(estado);
-                asiento.setEvento(evento);
-
-                nuevos.add(asiento);
-            }
-        }
-
-        asientosRepository.saveAll(nuevos);
-
-        log.info("Asientos sincronizados para evento {} (total: {})",
-            evento.getId(), nuevos.size());
     }
 
     /**
