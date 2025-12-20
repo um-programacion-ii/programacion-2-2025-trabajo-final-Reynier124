@@ -4,14 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VentaAsientosRequest {
+public class VentaAsientosRequest implements Serializable {
     private Long eventoId;
-    private LocalDateTime fecha;
+    private Instant fecha;
     private Double precioVenta;
     private List<AsientosVentasDTO> asientos;
 
