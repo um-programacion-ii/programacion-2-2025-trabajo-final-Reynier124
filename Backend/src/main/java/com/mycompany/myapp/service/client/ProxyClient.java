@@ -28,21 +28,21 @@ public class ProxyClient {
             .block();
     }
 
-    public EventoDTO getEventobyId(String id) {
+    public EventoCatedraDTO getEventobyId(String id) {
         return proxyWebClient.get()
             .uri("/proxy/eventos/{id}", id)
             .accept(MediaType.APPLICATION_JSON)
             .retrieve()
-            .bodyToMono(EventoDTO.class)
+            .bodyToMono(EventoCatedraDTO.class)
             .block();
     }
 
-    public List<EventoDTO> getEventos() {
+    public List<EventoCatedraDTO> getEventos() {
         return proxyWebClient.get()
             .uri("/proxy/eventos")
             .accept(MediaType.APPLICATION_JSON)
             .retrieve()
-            .bodyToFlux(EventoDTO.class)
+            .bodyToFlux(EventoCatedraDTO.class)
             .collectList()
             .block();
     }

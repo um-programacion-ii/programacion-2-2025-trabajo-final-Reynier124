@@ -1,6 +1,7 @@
 com/mycompany/myapp/service/dto/MapaAsientosDTO.class
 com/mycompany/myapp/web/rest/errors/package-info.class
 com/mycompany/myapp/config/JacksonConfiguration$1.class
+com/mycompany/myapp/service/dto/EventoCatedraDTO.class
 com/mycompany/myapp/config/RedisConfig.class
 com/mycompany/myapp/config/CacheConfiguration.class
 com/mycompany/myapp/service/mapper/package-info.class
@@ -21,6 +22,7 @@ com/mycompany/myapp/aop/logging/LoggingAspect.class
 com/mycompany/myapp/config/JacksonConfiguration.class
 com/mycompany/myapp/config/LoggingAspectConfiguration.class
 com/mycompany/myapp/aop/logging/package-info.class
+com/mycompany/myapp/service/dto/IntegrantesCatedraDTO.class
 com/mycompany/myapp/service/impl/DisponibilidadAsientosService.class
 com/mycompany/myapp/ApplicationWebXml.class
 com/mycompany/myapp/config/AsyncConfiguration.class
