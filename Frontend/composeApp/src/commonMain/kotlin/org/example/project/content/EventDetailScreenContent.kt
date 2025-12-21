@@ -16,10 +16,12 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import org.example.project.content.mapaAsientos.SeatMapScreen
 import org.example.project.dto.MapaAsientosDTO
 import org.example.project.network.ApiClient
+import org.example.project.ui.SeatDetailsScreen
 
 @Composable
 fun EventDetailScreenContent(
     eventId: Long,
+    precioUnitario: Double,
     onBack: () -> Unit
 ) {
     val navigator = LocalNavigator.currentOrThrow
@@ -52,8 +54,13 @@ fun EventDetailScreenContent(
                 eventoId = eventId,
                 mapaAsientos = mapaAsientos!!,
                 onSeatsSelected = { seats ->
-                    // TEMPORAL: solo debug
-                    println("Seleccionados: $seats")
+                    navigator.push(
+                        SeatDetailsScreen(
+                            eventoId = eventId,
+                            seats = seats,
+                            precioUnitario = precioUnitario
+                        )
+                    )
                 },
                 onBack = onBack
             )

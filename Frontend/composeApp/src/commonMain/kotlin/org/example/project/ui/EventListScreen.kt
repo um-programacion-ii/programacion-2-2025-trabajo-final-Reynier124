@@ -12,8 +12,8 @@ class EventListScreen : Screen {
         val navigator = LocalNavigator.currentOrThrow
 
         EventListScreenContent(
-            onEventClick = { eventId ->
-                navigator.push(EventDetailScreen(eventId))
+            onEventClick = { event ->
+                navigator.push(EventDetailScreen(event))
             }
         )
     }

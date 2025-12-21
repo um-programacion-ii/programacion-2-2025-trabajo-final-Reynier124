@@ -1,8 +1,10 @@
 package org.example.project.dto
+
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AsientoSeleccionado(
+data class AsientosComprasDTO (
     val fila: Int,
-    val columna: Int
+    val columna: Int,
+    val persona: String,
 )

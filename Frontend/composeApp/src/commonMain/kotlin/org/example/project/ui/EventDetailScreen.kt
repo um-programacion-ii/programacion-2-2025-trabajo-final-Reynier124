@@ -16,13 +16,14 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import org.example.project.content.EventDetailScreenContent
 import org.example.project.dto.EventoResponse
 
-data class EventDetailScreen(val eventId: Long) : Screen {
+data class EventDetailScreen(val event: EventoResponse) : Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
 
         EventDetailScreenContent(
-            eventId = eventId,
+            eventId = event.id,
+            precioUnitario = event.precioEntrada,
             onBack = { navigator.pop() }
         )
     }
