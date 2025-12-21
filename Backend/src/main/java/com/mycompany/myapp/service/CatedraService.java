@@ -21,11 +21,11 @@ public class CatedraService {
         return proxyClient.registrar(body);
     }
 
-    public EventoDTO getEventoPorId(String id) {
+    public EventoCatedraDTO getEventoPorId(String id) {
         return proxyClient.getEventobyId(id);
     }
 
-    public List<EventoDTO> getEventos() {
+    public List<EventoCatedraDTO> getEventos() {
         return proxyClient.getEventos();
     }
 

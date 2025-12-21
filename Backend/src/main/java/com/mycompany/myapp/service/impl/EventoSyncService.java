@@ -6,6 +6,7 @@ import com.mycompany.myapp.repository.AsientosRepository;
 import com.mycompany.myapp.repository.EventoRepository;
 import com.mycompany.myapp.service.client.ProxyClient;
 import com.mycompany.myapp.service.dto.AsientosProxyCompletosDTO;
+import com.mycompany.myapp.service.dto.EventoCatedraDTO;
 import com.mycompany.myapp.service.dto.EventoDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,12 +39,12 @@ public class EventoSyncService {
 
         try {
             // Obtener todos los eventos desde la cátedra
-            List<EventoDTO> eventosActualizados = proxyClient.getEventos();
+            List<EventoCatedraDTO> eventosActualizados = proxyClient.getEventos();
 
             log.info("Se obtuvieron {} eventos de la cátedra", eventosActualizados.size());
 
             // Actualizar o crear eventos en la BD local
-            for (EventoDTO eventoDTO : eventosActualizados) {
+            for (EventoCatedraDTO eventoDTO : eventosActualizados) {
                 sincronizarEvento(eventoDTO);
             }
 
@@ -59,19 +61,23 @@ public class EventoSyncService {
     /**
      * Sincroniza un evento individual
      */
-    private void sincronizarEvento(EventoDTO eventoDTO) {
+    private void sincronizarEvento(EventoCatedraDTO eventoDTO) {
 
         Evento evento = eventoRepository.findById(eventoDTO.getId())
             .orElse(new Evento());
 
         evento.setId(eventoDTO.getId());
         evento.setTitulo(eventoDTO.getTitulo());
+        evento.setResumen(eventoDTO.getResumen());
         evento.setDescripcion(eventoDTO.getDescripcion());
         evento.setFecha(eventoDTO.getFecha());
         evento.setFilaAsientos(eventoDTO.getFilaAsientos());
         evento.setColumnaAsientos(eventoDTO.getColumnAsientos());
         evento.setPrecioEntrada(eventoDTO.getPrecioEntrada());
+        evento.setEventoTipoNombre(eventoDTO.getEventoTipo().getNombre());
+        evento.setEventoTipoDescripcion(eventoDTO.getEventoTipo().getDescripcion());
         evento.setEstado("ACTIVO");
+        evento.setUltimaActualizacion(Instant.now());
 
         eventoRepository.save(evento);
 
@@ -81,10 +87,10 @@ public class EventoSyncService {
     /**
      * Marca como eliminados los eventos que ya no existen en la cátedra
      */
-    private void marcarEventosEliminados(List<EventoDTO> eventosActualizados) {
+    private void marcarEventosEliminados(List<EventoCatedraDTO> eventosActualizados) {
         try {
             List<Long> idsActualizados = eventosActualizados.stream()
-                .map(EventoDTO::getId)
+                .map(EventoCatedraDTO::getId)
                 .toList();
 
             List<Evento> eventosLocales = eventoRepository.findByEstado("Activo");
