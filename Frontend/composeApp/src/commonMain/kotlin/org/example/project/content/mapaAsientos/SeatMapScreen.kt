@@ -120,6 +120,7 @@ fun SeatMapScreen(
                 onConfirm = { onSeatsSelected(selectedSeats) }
             )
         }
+
     }
     }
 }

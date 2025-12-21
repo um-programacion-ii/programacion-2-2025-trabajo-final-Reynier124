@@ -26,11 +26,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import org.example.project.dto.EventoResponse
 import org.example.project.viewmodel.EventViewModel
 
 @Composable
 fun EventListScreenContent(
-    onEventClick: (Long) -> Unit
+    onEventClick: (EventoResponse) -> Unit
 ) {
     val viewModel = remember { EventViewModel() }
     val scope = rememberCoroutineScope()
@@ -98,7 +99,7 @@ fun EventListScreenContent(
                     ) { event ->
                         EventItem(
                             event = event,
-                            onClick = { onEventClick(event.id) }
+                            onClick = { onEventClick(event) }
                         )
                     }
                 }
