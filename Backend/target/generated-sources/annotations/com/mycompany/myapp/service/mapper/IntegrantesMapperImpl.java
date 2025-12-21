@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-20T18:37:50-0300",
+    date = "2025-12-21T09:07:18-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.6 (Amazon.com Inc.)"
 )
 @Component
@@ -134,8 +134,6 @@ public class IntegrantesMapperImpl implements IntegrantesMapper {
         evento.setImagen( eventoDTO.getImagen() );
         evento.setFilaAsientos( eventoDTO.getFilaAsientos() );
         evento.setPrecioEntrada( eventoDTO.getPrecioEntrada() );
-        evento.setEventoTipoNombre( eventoDTO.getEventoTipoNombre() );
-        evento.setEventoTipoDescripcion( eventoDTO.getEventoTipoDescripcion() );
         evento.setEstado( eventoDTO.getEstado() );
         evento.setUltimaActualizacion( eventoDTO.getUltimaActualizacion() );
 
@@ -173,12 +171,6 @@ public class IntegrantesMapperImpl implements IntegrantesMapper {
         }
         if ( eventoDTO.getPrecioEntrada() != null ) {
             mappingTarget.setPrecioEntrada( eventoDTO.getPrecioEntrada() );
-        }
-        if ( eventoDTO.getEventoTipoNombre() != null ) {
-            mappingTarget.setEventoTipoNombre( eventoDTO.getEventoTipoNombre() );
-        }
-        if ( eventoDTO.getEventoTipoDescripcion() != null ) {
-            mappingTarget.setEventoTipoDescripcion( eventoDTO.getEventoTipoDescripcion() );
         }
         if ( eventoDTO.getEstado() != null ) {
             mappingTarget.setEstado( eventoDTO.getEstado() );

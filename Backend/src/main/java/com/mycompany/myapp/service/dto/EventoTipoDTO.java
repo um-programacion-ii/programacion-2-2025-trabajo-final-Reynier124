@@ -9,7 +9,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventoTipoDTO implements Serializable {
-    private String eventoTipoNombre;
-    private String eventoTipoDescripcion;
+    private String Nombre;
+    private String Descripcion;
 
 }

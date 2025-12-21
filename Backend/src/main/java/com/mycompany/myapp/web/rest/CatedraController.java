@@ -12,7 +12,6 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/service")
-@PermitAll
 public class CatedraController {
     private final CatedraService catedraService;
     private final DisponibilidadAsientosService disponibilidadAsientosService;
@@ -28,12 +27,12 @@ public class CatedraController {
     }
 
     @GetMapping("/eventos/{id}")
-    public EventoDTO getEvento(@PathVariable Long id) {
+    public EventoCatedraDTO getEvento(@PathVariable Long id) {
         return catedraService.getEventoPorId(id.toString());
     }
 
     @GetMapping("/eventos")
-    public List<EventoDTO> getEventos() {
+    public List<EventoCatedraDTO> getEventos() {
         return catedraService.getEventos();
     }
 

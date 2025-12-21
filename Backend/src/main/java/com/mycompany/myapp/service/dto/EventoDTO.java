@@ -39,10 +39,6 @@ public class EventoDTO implements Serializable {
 
     private EventoTipoDTO eventoTipo;
 
-    private String eventoTipoNombre;
-
-    private String eventoTipoDescripcion;
-
     private String estado;
 
     private Instant ultimaActualizacion;
@@ -83,8 +79,8 @@ public class EventoDTO implements Serializable {
             ", filaAsientos=" + getFilaAsientos() +
             ", columnaAsientos=" + getColumnAsientos() +
             ", precioEntrada=" + getPrecioEntrada() +
-            ", eventoTipoNombre='" + getEventoTipo().getEventoTipoNombre() + "'" +
-            ", eventoTipoDescripcion='" + getEventoTipo().getEventoTipoDescripcion() + "'" +
+            ", eventoTipoNombre='" + getEventoTipo().getNombre() + "'" +
+            ", eventoTipoDescripcion='" + getEventoTipo().getDescripcion() + "'" +
             ", estado='" + getEstado() + "'" +
             ", ultimaActualizacion='" + getUltimaActualizacion() + "'" +
             "}";

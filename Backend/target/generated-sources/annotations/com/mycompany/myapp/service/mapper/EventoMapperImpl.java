@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-20T18:37:50-0300",
+    date = "2025-12-21T09:07:18-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.6 (Amazon.com Inc.)"
 )
 @Component
@@ -32,8 +32,6 @@ public class EventoMapperImpl implements EventoMapper {
         evento.setImagen( dto.getImagen() );
         evento.setFilaAsientos( dto.getFilaAsientos() );
         evento.setPrecioEntrada( dto.getPrecioEntrada() );
-        evento.setEventoTipoNombre( dto.getEventoTipoNombre() );
-        evento.setEventoTipoDescripcion( dto.getEventoTipoDescripcion() );
         evento.setEstado( dto.getEstado() );
         evento.setUltimaActualizacion( dto.getUltimaActualizacion() );
 
@@ -57,8 +55,6 @@ public class EventoMapperImpl implements EventoMapper {
         eventoDTO.setImagen( entity.getImagen() );
         eventoDTO.setFilaAsientos( entity.getFilaAsientos() );
         eventoDTO.setPrecioEntrada( entity.getPrecioEntrada() );
-        eventoDTO.setEventoTipoNombre( entity.getEventoTipoNombre() );
-        eventoDTO.setEventoTipoDescripcion( entity.getEventoTipoDescripcion() );
         eventoDTO.setEstado( entity.getEstado() );
         eventoDTO.setUltimaActualizacion( entity.getUltimaActualizacion() );
 
@@ -125,12 +121,6 @@ public class EventoMapperImpl implements EventoMapper {
         }
         if ( dto.getPrecioEntrada() != null ) {
             entity.setPrecioEntrada( dto.getPrecioEntrada() );
-        }
-        if ( dto.getEventoTipoNombre() != null ) {
-            entity.setEventoTipoNombre( dto.getEventoTipoNombre() );
-        }
-        if ( dto.getEventoTipoDescripcion() != null ) {
-            entity.setEventoTipoDescripcion( dto.getEventoTipoDescripcion() );
         }
         if ( dto.getEstado() != null ) {
             entity.setEstado( dto.getEstado() );

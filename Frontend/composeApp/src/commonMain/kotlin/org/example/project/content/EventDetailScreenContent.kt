@@ -1,46 +1,62 @@
 package org.example.project.content
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import org.example.project.content.mapaAsientos.SeatMapScreen
+import org.example.project.dto.MapaAsientosDTO
+import org.example.project.network.ApiClient
 
 @Composable
 fun EventDetailScreenContent(
     eventId: Long,
     onBack: () -> Unit
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        // Botón de volver
-        Button(onClick = onBack) {
-            Text("← Volver")
+    val navigator = LocalNavigator.currentOrThrow
+
+    var mapaAsientos by remember { mutableStateOf<MapaAsientosDTO?>(null) }
+    var loading by remember { mutableStateOf(false) }
+
+    LaunchedEffect(eventId) {
+        loading = true
+        val result = ApiClient.getAsientosEvento(eventId)
+        result.fold(
+            onSuccess = { mapaAsientos = it },
+            onFailure = { error -> println("Error: ${error.message}") }
+        )
+        loading = false
+    }
+
+    when {
+        loading -> {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            text = "Detalle del Evento",
-            style = MaterialTheme.typography.headlineMedium
-        )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Text(
-            text = "ID: $eventId",
-            style = MaterialTheme.typography.bodyLarge
-        )
-
-        // Aquí cargarías los detalles del evento desde un ViewModel
+        mapaAsientos != null -> {
+            SeatMapScreen(
+                eventoId = eventId,
+                mapaAsientos = mapaAsientos!!,
+                onSeatsSelected = { seats ->
+                    // TEMPORAL: solo debug
+                    println("Seleccionados: $seats")
+                },
+                onBack = onBack
+            )
+        }
     }
 }
